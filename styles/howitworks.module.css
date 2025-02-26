@@ -1,0 +1,50 @@
+.howitworks{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+
+    .h1one{
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 38px;
+    }
+
+    .p{
+        line-height: 23px;
+        width: min(80%, 418px);
+        text-align: center;
+    }
+
+    .steps{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 40px;
+        width: 100%;
+
+        .step{
+            width: 272px;
+            height: 244px;
+
+            .steph1{
+                font-weight: 400;
+                font-size: 56px;
+                line-height: 56px;
+                margin-bottom: 30px;
+            }
+
+            .steph2{
+                margin: 12px 0;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 28px;
+            }
+
+            .stepp{
+                line-height: 23px;
+            }
+        }
+    }
+}

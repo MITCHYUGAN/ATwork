@@ -1,0 +1,40 @@
+.signupcomponent{
+    margin-top: 100px;
+    margin-bottom: 100px;
+
+    .h1{
+        font-size: 30px;
+        font-weight: 600;
+        line-height: 65px;
+        text-align: center;
+    }
+
+    .selectProfile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+
+        .profileWrapper{
+            display: flex;
+            width: min(60%);
+            justify-content: space-between;
+            gap: 40px;
+
+            .profile{
+                display: flex;
+                gap: 10px;
+                background-color: #e4e4e712;
+                border: 1px solid #E4E4E7;
+                align-items: center;
+                padding: 20px;
+                border-radius: 14px;
+                cursor: pointer;
+
+                .profilevector{
+                    font-size: 80px;
+                }
+            }
+        }
+    }
+}

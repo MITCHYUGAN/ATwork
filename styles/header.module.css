@@ -1,0 +1,20 @@
+.header{
+    height: 96px;
+    position: fixed;
+    width: inherit;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    
+    .ul{
+        display: flex;
+        list-style: none;
+        gap: 20px;
+    }
+
+    .headerBtn{
+        background-color: #1A73E8;
+    }
+}
