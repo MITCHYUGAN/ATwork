@@ -1,6 +1,6 @@
 import { assets } from 'chain-registry';
 
-export const CHAIN_NAME = 'stargaze';
+export const CHAIN_NAME = 'cosmoshub';
 
 export const STARGAZE_ADDRESS_LENGTH = 44;
 
@@ -15,7 +15,7 @@ export const STARGATE_ASSETS = assets.find(
 )!.assets;
 
 export const STARGAZE_TOKEN = STARGATE_ASSETS.find(
-  (asset) => asset.base === 'ustars'
+  (asset) => asset.base === 'uatom'
 )!;
 
 export const STARGAZE_TOKEN_DENOM = STARGAZE_TOKEN.base;

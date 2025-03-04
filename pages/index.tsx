@@ -8,11 +8,17 @@ import { HowItWorks } from '@/components/common/HowItWorks';
 import { OpenProject } from '@/components/common/OpenProjects';
 import { Reviews } from '@/components/common/Reviews';
 import { GetStarted } from '@/components/common/GetStarted';
+import { WalletStatus } from '@cosmos-kit/core';
+import { useChain } from '@cosmos-kit/react';
+import { CHAIN_NAME } from '@/config';
 
 export default function Home() {
+
+  const { status } = useChain(CHAIN_NAME)
+
   return (
     <main>
-      <Header />
+      <Header isConnectWallet={status === WalletStatus.Connected}/>
       <HeroSection />
       <About />
       <HowItWorks />

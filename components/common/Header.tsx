@@ -2,8 +2,11 @@ import { Link, Box, Button, Icon, Text, useTheme, useColorModeValue } from '@int
 import NextLink from 'next/link';
 import logo from "../../assets/ATwork.svg"
 import styles from "../../styles/header.module.css"
+import { Wallet } from "@/components";
 
-export function Header() {
+export function Header(
+  { isConnectWallet }: { isConnectWallet: boolean }
+) {
   const { theme, setTheme } = useTheme();
 
   const toggleColorMode = () => {
@@ -19,11 +22,17 @@ export function Header() {
         <li>About</li>
         <li>Services</li>
       </ul>
-      <NextLink href="signup">
-        <Button className={styles.headerBtn} rightIcon="arrowRightLine">
-          Get Started
-        </Button>
-      </NextLink>
+      {
+        !isConnectWallet ? (
+          <NextLink href="signup">
+          <Button className={styles.headerBtn} rightIcon="arrowRightLine">
+            Get Started
+          </Button>
+        </NextLink>
+        ) : (
+          <Wallet />
+        )
+      }
     </header>
   );
 }
