@@ -6,7 +6,7 @@ export type BurnProps = {
 }
 
 export function Burn({
-  onBurn = () => {},
+  onBurn = () => {},  
   onCancal = () => {},
 }: BurnProps) {
   return <Box>
