@@ -1,0 +1,66 @@
+.completefreelancerprofile {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+
+    .formwrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 30px;
+
+        .formh1 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .formp {
+            font-size: 1.125rem;
+            /* line-height: 1.75rem; */
+        }
+
+        .form {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+
+            .formlabel {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+
+                .forminput {
+                    width: 100%;
+                    height: 35px;
+                    padding: 10px;
+                    font-family: "Poppins", serif;
+                }
+            }
+
+            .formnames {
+                display: flex;
+                justify-content: space-between;
+                gap: 20px;
+            }
+
+            .formbtn{
+                border: none;
+                outline: none;
+                cursor: pointer;
+                margin-top: 20px;
+                padding: 10px;
+                background-color: #1A73E8;
+                color: white;
+                font-family: "Poppins", serif;
+            }
+        }
+    }
+
+    .completefreelancerprofileimg {
+        width: 50%;
+    }
+}

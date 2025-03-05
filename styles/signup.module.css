@@ -1,39 +1,79 @@
-.signupcomponent{
+.signupcomponent {
     margin-top: 100px;
     margin-bottom: 100px;
 
-    .h1{
+    .h1 {
         font-size: 30px;
         font-weight: 600;
         line-height: 65px;
         text-align: center;
     }
 
-    .selectProfile{
+    .selectProfile {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 50px;
 
-        .profileWrapper{
+        .profileWrapper {
             display: flex;
-            width: min(60%);
+            width: min(100%, 1000px);
             justify-content: space-between;
             gap: 40px;
 
-            .profile{
+            .profile {
                 display: flex;
-                gap: 10px;
-                background-color: #e4e4e712;
-                border: 1px solid #E4E4E7;
-                align-items: center;
+                flex-direction: column;
+                gap: 15px;
+                /* background-color: #e4e4e712;
+                border: 1px solid #E4E4E7; */
+                align-items: flex-start;
                 padding: 20px;
                 border-radius: 14px;
-                cursor: pointer;
 
-                .profilevector{
+                .profileContent {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+
+                    .profileImg {
+                        width: 100%;
+                    }
+                    
+                    .profileImgFreelancer{
+                        filter: grayscale(1) sepia(0.5) hue-rotate(180deg) brightness(0.9) saturate(3.5);
+                    }
+
+                    .profileChecks {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+
+                }
+
+                .profileBtn{
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    margin-top: 20px;
+                    width: 80%;
+                    align-self: center;
+                    padding: 10px;
+                    background-color: #1A73E8;
+                    color: white;
+                    font-family: "Poppins", serif;
+                }
+
+                .profileBtnclient{
+                    background-color: black;
+                    background-color: rgb(20, 30, 52);
+                }
+
+                .profilevector {
                     font-size: 80px;
                 }
+
             }
         }
     }
