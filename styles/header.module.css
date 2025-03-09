@@ -1,21 +1,28 @@
 .header{
-    height: 96px;
+    /* height: 96px; */
     position: fixed;
-    width: inherit;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    width: 100%;
+    background-color: #F4F4F5;
     z-index: 10;
-    
-    .ul{
-        display: flex;
-        list-style: none;
-        gap: 20px;
-    }
+    display: grid;
+    place-items: center;
 
-    .headerBtn{
-        background-color: #1A73E8;
+    .headerWrapper{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        height: 90px;
+        width: 90%;
+
+        .ul{
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+    
+        .headerBtn{
+            background-color: #1A73E8;
+        }
     }
 }

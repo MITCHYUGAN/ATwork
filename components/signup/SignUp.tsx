@@ -21,22 +21,13 @@ export function SignUp({ isConnectWallet }: { isConnectWallet: boolean }) {
                     </>
                 ) : (
                     <>{
-                        profile === "client" ? (
-                            <>
-                                <button onClick={() => setProfile("")}>🔙</button>
-                                <CompleteClientProfile />
-                            </>
-                        ) : profile === "freelancer" ? (
-                            <>
-                                <button onClick={() => setProfile("")}>🔙</button>
-                                <CompleteFreelancerProfile />
-                            </>
-                        ) : (
+                        profile === "client" ? <CompleteClientProfile setProfile={setProfile} /> : profile === "freelancer" ?
+                                <CompleteFreelancerProfile setProfile={setProfile} /> : (
                             <div className={styles.selectProfile}>
                                 {/* <h1 className={styles.h1}>Join as a Freelancer or Client</h1> */}
                                 <div className={styles.profileWrapper}>
                                     <div className={styles.profile}>
-                                        <h1>💻 Continue as Freelancer</h1>
+                                        <h1 className={styles.profileh1}>💻 Continue as Freelancer</h1>
                                         <p>Create a profile to start submitting, and get notified on new work opportunities</p>
                                         <div className={styles.profileContent}>
                                             <img src={freelancerimg.src} className={`${styles.profileImg} ${styles.profileImgFreelancer}`} alt="" />
@@ -58,7 +49,7 @@ export function SignUp({ isConnectWallet }: { isConnectWallet: boolean }) {
                                         </Button>
                                     </div>
                                     <div className={styles.profile}>
-                                        <h1>💼 Continue as Client</h1>
+                                        <h1 className={styles.profileh1}>💼 Continue as Client</h1>
                                         <p>List a bounty or freelance gig for your project and find your next contributor</p>
                                         <div className={styles.profileContent}>
                                             <img src={clientimg.src} className={styles.profileImg} alt="" />

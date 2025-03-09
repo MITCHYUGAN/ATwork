@@ -1,5 +1,3 @@
-import NextLink from 'next/link';
-import { Stack, Button, Divider } from '@interchain-ui/react';
 import { Header } from '../components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import { HeroSection } from '@/components/common/HeroSection';

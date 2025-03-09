@@ -1,6 +1,8 @@
 .signupcomponent {
-    margin-top: 100px;
     margin-bottom: 100px;
+    width: 100%;
+    min-height: 80vh;
+    margin-top: 100px;
 
     .h1 {
         font-size: 30px;
@@ -30,6 +32,10 @@
                 align-items: flex-start;
                 padding: 20px;
                 border-radius: 14px;
+
+                .profileh1{
+                    font-weight: 600;
+                }
 
                 .profileContent {
                     display: flex;

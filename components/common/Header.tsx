@@ -15,24 +15,26 @@ export function Header(
 
   return (
     <header className={styles.header}>
-      <NextLink href="/">
-        <img src={logo.src} alt="logo" />
-      </NextLink>
-      <ul className={styles.ul}>
-        <li>About</li>
-        <li>Services</li>
-      </ul>
-      {
-        !isConnectWallet ? (
-          <NextLink href="signup">
-          <Button className={styles.headerBtn} rightIcon="arrowRightLine">
-            Get Started
-          </Button>
+      <div className={styles.headerWrapper}>
+        <NextLink href="/">
+          <img src={logo.src} alt="logo" />
         </NextLink>
-        ) : (
-          <Wallet />
-        )
-      }
+        <ul className={styles.ul}>
+          <li>About</li>
+          <li>Services</li>
+        </ul>
+        {
+          !isConnectWallet ? (
+            <NextLink href="signup">
+              <Button className={styles.headerBtn} rightIcon="arrowRightLine">
+                Get Started
+              </Button>
+            </NextLink>
+          ) : (
+            <Wallet />
+          )
+        }
+      </div>
     </header>
   );
 }
