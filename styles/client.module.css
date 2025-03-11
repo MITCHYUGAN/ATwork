@@ -1,0 +1,146 @@
+.client{
+    background-color: #F4F4F5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+
+    .clientPage{
+        margin-top: 100px;
+        width: 90%;
+
+        .clientbtn{
+            background: none;
+            border: 1px solid #1A73E8;
+            color: #1A73E8;
+            margin-top: 20px;
+        }
+
+        /* .clientbtn1{
+            background-color: #1A73E8;
+            color: white;
+        } */
+        
+        .clientbtn2{
+            color: white;
+            background-color: #545756;
+            border: none;
+            padding: 12px 20px;
+        }
+    
+        .clientPageHeader{
+            display: flex;
+            justify-content: space-between;
+        }
+    
+        .clientPageContent{
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            margin-top: 30px;
+            
+            .clientProjects{
+                width: 100%;
+                background-color: white;
+                border: 1px solid #E4E4E7;
+                border-radius: 14px;
+                min-height: 70vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .clientProjectsH1{
+                    width: 100%;
+                    border-bottom: 1px solid #E4E4E7;
+                    color: #7E8082;
+                    font-weight: 600;
+                    font-size: 18px;
+                    padding: 16px 24px;
+                }
+
+                .clientNoProjectsDiv{
+                    margin-top: 100px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+            }
+    
+            .clientAside{
+                width: 500px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+
+                .clientNotifi{
+                    border: 1px solid #E4E4E7;
+                    border-radius: 14px;
+                    height: min(300px);
+                    background-color: #FFFFFF;
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+    
+                    .clientNotifiH1{
+                        width: 100%;
+                        border-bottom: 1px solid #E4E4E7;
+                        color: #7E8082;
+                        font-weight: 500;
+                        font-size: 18px;
+                        padding: 16px 24px;
+                    }
+    
+                    .clientNotifidiv{
+                        display: flex;
+                        align-items: center;
+                        gap: 16px;
+                        margin-top: 20px;
+    
+                        .clientNotifiH2{
+                            font-size: 15px;
+                            font-weight: 400;
+                            color: #545756;
+                        }
+                    }
+                }
+
+                .clientGetStarted{
+                    background-color: #18181B;
+                    border-radius: 14px;
+                    height: min(230px);
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    padding: 30px;
+                    gap: 15px;
+                    position: relative;
+                    overflow: hidden;
+
+                    .clientGetStartedH1{
+                        font-size: 16px;
+                        color: #ffffffd9;
+                        font-weight: 700;
+                    }
+
+                    .clientGetStartedP{
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: #f4f4f5a8;
+                    }
+
+                    .clientRocket{
+                        position: absolute;
+                        right: -5px;
+                        bottom: -5px;
+                    }
+                }
+            }   
+        }
+    
+    }
+}
