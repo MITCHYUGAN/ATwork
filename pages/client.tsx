@@ -12,7 +12,7 @@ import { useState } from "react";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 
 
-export default function client() {
+export default function Client() {
     const { status } = useChain(CHAIN_NAME)
     const [postprojectmodalactive, setPostProjectModalActive] = useState(true)
     const [name, setName] = useState("")

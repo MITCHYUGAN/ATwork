@@ -25,7 +25,7 @@ export function Header(
         </ul>
         {
           !isConnectWallet ? (
-            <NextLink href="signup">
+            <NextLink href="join">
               <Button className={styles.headerBtn} rightIcon="arrowRightLine">
                 Get Started
               </Button>

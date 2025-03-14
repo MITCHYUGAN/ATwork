@@ -142,3 +142,205 @@ export function CompleteClientProfile({ setProfile }: CompleteClientProfileProps
 
 //         checkProfile();
 //     }, [isConnectWallet, address]);
+
+
+
+
+
+// Post Project
+import { Button } from "@interchain-ui/react"
+import styles from "../../styles/postproject.module.css"
+import { useState } from "react"
+
+interface PostProjectProps {
+    setPostProjectModalActive: (value: boolean) => void
+}
+
+export default function PostProject({ setPostProjectModalActive }: PostProjectProps) {
+    const [formContent, setFormContent] = useState("title")
+    const [num, setNum] = useState(1)
+    const [spantext, setSpanText] = useState("Begin ")
+    const [formH1text, setFormH1text] = useState("with a compelling title")
+    const [formPtext, setFormPtext] = useState("A strong title grabs attention and ensures your project post resonates with the right candidates. Since it’s the first thing they’ll notice, make it impactful!")
+
+    return (
+        <section className={styles.postproject}>
+            <div className={styles.postprojectheader}>
+                <button className={styles.closepostprojectModal} onClick={() => setPostProjectModalActive(false)}>← close</button>
+                <p className={styles.postprojectheaderprogress}>{num}/5</p>
+                <h1 className={styles.postprojectheaderh1}><span className={styles.postprojectheaderh1Span}>{spantext}</span>{formH1text}</h1>
+                <p className={styles.postprojectheaderP}>{formPtext}</p>
+            </div>
+            <form action="" className={styles.postprojectForm}>
+                {formContent === "title" ? (
+                    <div className={styles.postprojectFormTitle}>
+                        <label htmlFor="title" className={styles.postprojectFormLabel}>
+                            <p className={styles.postprojectFormLabelP}>Project Title</p>
+                            <input className={styles.postprojectFormLabelInput} type="text" name="title" id="title" placeholder="Write a title for your job" />
+                        </label>
+                        <div className={styles.postprojectFormTitleExample}>
+                            <p>Example of titles</p>
+                            <ul>
+                                <li>Creative Graphic Designer Wanted for Ad Campaign Design</li>
+                                <li>Full-Stack Developer Wanted for E-Commerce Platform Development</li>
+                                <li>SEO Specialist Needed to Optimize Website and Boost Rankings</li>
+                                <li>Copywriter Needed for Email Marketing Campaigns</li>
+                            </ul>
+                            <Button onClick={(e) => {
+                                e.preventDefault()
+                                setFormContent("description_skills")
+                                setNum(2)
+                                setSpanText("Great! ")
+                                setFormH1text("Now, provide a detailed project description. And skills required")
+                                setFormPtext("Provide a clear and detailed description of your project, including goals, tasks and required skills. This helps freelancers understand your needs and apply confidently.")
+                            }} className={styles.formbtn} rightIcon="arrowRightLine">Next</Button>
+                        </div>
+                    </div>
+                ) : formContent === "description_skills" ? (
+
+                    <div>
+                        <label htmlFor="description">
+                            <p>Description</p>
+                            <textarea name="description" id="description"></textarea>
+                        </label>
+                        <label htmlFor="">
+                            <p>Skills Required</p>
+                            <input type="text" name="" id="" />
+                        </label>
+
+                        <div>
+                            <Button onClick={(e) => {
+                                e.preventDefault()
+                                setFormContent("title")
+                                setNum(1)
+                                setSpanText("Begin ")
+                                setFormH1text("with a compelling title")
+                                setFormPtext("A strong title grabs attention and ensures your project post resonates with the right candidates. Since it’s the first thing they’ll notice, make it impactful!")
+                            }} className={styles.formbtn}>← Back</Button>
+
+                            <Button onClick={(e) => {
+                                e.preventDefault()
+                                setFormContent("budget_timeline")
+                            }} className={styles.formbtn} rightIcon="arrowRightLine">Next</Button>
+                        </div>
+                    </div>
+                ) : <>Something</>}
+            </form>
+        </section>
+    )
+}
+
+// .postproject {
+//     position: absolute;
+//     background-color: white;
+//     width: 60%;
+//     min-height: 90vh;
+//     box-shadow: 1px 1px 0px 1000px rgba(0, 0, 0, 0.542);
+//     z-index: 10;
+//     top: 30px;
+//     border: 1px solid #E4E4E7;
+//     border-radius: 14px;
+//     background-color: #F4F4F5;
+//     margin-bottom: 100px;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 30px;
+//     align-items: flex-start;
+//     padding: 50px;
+
+
+//     .closepostprojectModal {
+//         position: absolute;
+//         top: 30px;
+//         border: none;
+//         outline: none;
+//         border-radius: 4px;
+//         background: none;
+//         color: #2684FF;
+//         cursor: pointer;
+//         padding: 0;
+//         font-size: 15px;
+//         font-weight: 600;
+//         font-family: "Poppins", serif;
+//     }
+
+//     .postprojectheader {
+//         display: flex;
+//         flex-direction: column;
+//         margin-top: 50px;
+//         gap: 10px;
+
+//         .postprojectheaderprogress {
+//             color: #7E8082;
+//             font-weight: 700;
+//             font-size: 16px;
+//         }
+
+//         .postprojectheaderh1 {
+//             font-size: 24px;
+//             color: #18181B;
+//             font-weight: 600;
+//         }
+
+//         .postprojectheaderh1Span{
+//             color: #7E8082;
+//         }
+
+//         .postprojectheaderP {
+//             font-size: 16px;
+//             font-weight: 400;
+//             color: #7E8082;
+//             width: 90%;
+//         }
+//     }
+
+//     .postprojectForm {
+//         background-color: white;
+//         width: 100%;
+//         padding: 20px;
+//         border-radius: 14px;
+
+//         .postprojectFormTitle {
+//             display: flex;
+//             flex-direction: column;
+//             gap: 30px;
+
+//             .postprojectFormLabel {
+//                 width: 80%;
+//                 display: flex;
+//                 flex-direction: column;
+//                 gap: 10px;
+
+//                 .postprojectFormLabelP {
+//                     font-size: 16px;
+//                     font-weight: 600;
+//                     color: #545756;
+//                 }
+
+//                 .postprojectFormLabelInput {
+//                     width: 100%;
+//                     border: 1px solid #BEBEBE;
+//                     padding: 10px 16px;
+//                     font-family: "Poppins", serif;
+//                     background: none;
+//                     font-size: 16px;
+//                     border-radius: 7px;
+//                 }
+//             }
+
+//             .postprojectFormTitleExample {
+//                 color: #7E8082;
+//                 font-size: 16px;
+//                 display: flex;
+//                 flex-direction: column;
+
+//                 .formbtn {
+//                     padding: 0px 18px;
+//                     background-color: #1A73E8;
+//                     font-family: "Poppins", serif;
+//                     align-self: flex-end;
+//                 }
+//             }
+//         }
+//     }
+// }

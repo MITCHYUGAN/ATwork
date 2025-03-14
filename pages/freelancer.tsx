@@ -9,7 +9,7 @@ import activeprojectimg from "../assets/activeprojectimg.svg"
 import rocket from "../assets/rocket.svg"
 
 
-export default function freelancer() {
+export default function Freelancer() {
     const { status } = useChain(CHAIN_NAME)
 
     return (

@@ -6,7 +6,7 @@ import { useChain } from '@cosmos-kit/react';
 import { CHAIN_NAME } from '@/config';
 
 
-export default function signup(){
+export default function Join(){
     const { status } = useChain(CHAIN_NAME)
 
     return(
