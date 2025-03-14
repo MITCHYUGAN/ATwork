@@ -2,7 +2,7 @@
     /* height: 96px; */
     position: fixed;
     width: 100%;
-    background-color: #F4F4F5;
+    background-color: var(--background-color);
     z-index: 10;
     display: grid;
     place-items: center;
@@ -22,7 +22,7 @@
         }
     
         .headerBtn{
-            background-color: #1A73E8;
+            background-color: var(--btn-background-color);
         }
     }
 }

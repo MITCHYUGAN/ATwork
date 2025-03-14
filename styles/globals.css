@@ -10,9 +10,24 @@ body {
   /* font-family: "Montserrat", sans-serif; */
 }
 
+:root{
+  --background-color: #F4F4F5;
+  --btn-background-color: #1A73E8;
+  --span-color: #7E8082;
+  --text-color: #18181B;
+  --ptext-color: #545756;
+  --ptext-weight: 400;
+  --ptext-size: 18px;
+  --heading-weight: 600;
+}
+
 a {
   color: inherit;
   text-decoration: none;
+}
+
+li{
+  list-style: none;
 }
 
 * {
@@ -47,6 +62,14 @@ _13q6qlp6t, _13q6qlp3pt, _14der0i88{
 
 main{
   width: 100%;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+button{
+  font-family: "Poppins", serif;
 }
 
 h1, h2, h3, p{

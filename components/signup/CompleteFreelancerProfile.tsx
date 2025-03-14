@@ -9,6 +9,8 @@ interface CompleteFreelancerProfileProps {
 }
 
 export function CompleteFreelancerProfile({ setProfile }: CompleteFreelancerProfileProps) {
+
+
     return (
         <section className={styles.completefreelancerprofile}>
             <button className={styles.backbtn} onClick={() => setProfile("")}>← Back</button>

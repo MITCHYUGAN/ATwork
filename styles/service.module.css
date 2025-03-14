@@ -1,0 +1,41 @@
+.service{
+    display: flex;
+    flex-direction: column;
+    margin-top: 150px;
+    width: 90%;
+    gap: 60px;
+
+    .serviceheader{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: min(1000px, 100%);
+        
+        .serviceheaderh1{
+            color: var(--text-color);
+            font-weight: var(--heading-weight);
+            font-size: 40px;
+        }
+        
+        .serviceheaderp{
+            line-height: 130%;
+            font-weight: var(--ptext-weight);
+            color: var(--ptext-color);
+            font-size: var(--ptext-size);
+        }
+    }
+
+    .serviceimgs{
+        display: flex;
+        justify-content: space-between;
+        background: linear-gradient(90deg, #F4F4F5 0%, #F4F4F5 80%, rgba(255,255,255,1) 100%);
+        border-radius: 24px;
+        border: 1px solid #E4E4E7;
+        gap: 30px;
+        overflow: hidden;
+
+        .serviceimg{
+            width: 45%;
+        }
+    }
+}

@@ -1,4 +1,44 @@
 .footer{
     margin-top: 100px;
-    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+    background-color: #FFFFFF;
+    padding-top: 40px;
+
+    .footercontents{
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+
+        .footercontent{
+            width: min(500px, 50%);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        
+        .footerlist, .footersocialswrapper{
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footersocials{
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+    }
+
+    .footercopyright{
+        border-top: 1px solid #E4E4E7;
+        width: 100%;
+        text-align: center;
+        padding: 25px;
+    }
 }

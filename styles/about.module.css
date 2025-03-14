@@ -1,0 +1,46 @@
+.about{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    border: 1px solid #E4E4E7;
+    border-radius: 24px;
+    /* min-height: 70vh; */
+    padding: 40px;
+    width: 90%;
+    margin-top: 100px;
+
+    .aboutcontents{
+        width: min(600px, 60%);
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+
+        .aboutcontentsh1{
+            font-weight: var(--heading-weight);
+            font-size: 32px;
+            letter-spacing: 2%;
+            margin-bottom: -15px;
+
+            .aboutcontentsh1span{
+                color: var(--span-color);
+            }
+        }
+
+        .aboutcontentsp{
+            font-weight: var(--ptext-weight);
+            font-size: var(--ptext-size);
+            line-height: 145%;
+            color: var(--ptext-color);
+
+            .aboutcontentspspan{
+                color: var(--text-color);
+                font-weight: 500;
+            }
+        }
+    }
+
+    .aboutimg{
+        width: 40%;
+    }
+}

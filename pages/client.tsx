@@ -2,24 +2,48 @@ import { Header } from "@/components/common/Header"
 import { WalletStatus } from '@cosmos-kit/core';
 import { useChain } from '@cosmos-kit/react';
 import { Button } from '@interchain-ui/react';
-import { CHAIN_NAME } from '@/config';
+import { CHAIN_ID, CHAIN_NAME, CONTRACT_ADDRESS, RPC_ENDPOINT } from '@/config';
 import styles from "../styles/client.module.css"
 import notificationimg from "../assets/notificationing.svg"
 import postProjectImg from "../assets/postProjectImg.svg"
 import rocket from "../assets/rocket.svg"
 import PostProject from "@/components/common/PostProject";
 import { useState } from "react";
+import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+
 
 export default function client() {
     const { status } = useChain(CHAIN_NAME)
     const [postprojectmodalactive, setPostProjectModalActive] = useState(true)
+    const [name, setName] = useState("")
+
+    const getProfileName = async () => {
+
+        if (!window.keplr) {
+            alert("Keplr Wallet not detected. Please install the Keplr extension.");
+            return;
+        }
+
+        // Get the connected wallet address
+        const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
+        const accounts = await offlineSigner.getAccounts();
+        const address = accounts[0].address;
+
+        // Query the contract to check if a profile exists
+        const client = await SigningCosmWasmClient.connect(RPC_ENDPOINT);
+        const getProfileQuery = { get_profile: { address } };
+        const profile = await client.queryContractSmart(CONTRACT_ADDRESS, getProfileQuery);
+        setName(profile.profile.name)
+    }
+
+    getProfileName()
 
     return (
         <div className={styles.client}>
             <Header isConnectWallet={status === WalletStatus.Connected} />
             <main className={styles.clientPage}>
                 <div className={styles.clientPageHeader}>
-                    <h1>Hello Client</h1>
+                    <h1>Hello {name}</h1>
                     <Button onClick={() => setPostProjectModalActive(true)} className={`${styles.clientbtn} ${styles.clientbtn1}`}>+ Post a Project</Button>
                 </div>
                 <div className={styles.clientPageContent}>
