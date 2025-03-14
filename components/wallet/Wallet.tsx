@@ -35,7 +35,7 @@ export function Wallet() {
         status !== WalletStatus.Connected ? (
           <Box py="$16">
             <Stack attributes={{ mb: '$12', justifyContent: 'center' }}>
-              <Chain name={chain.pretty_name} logo={getChainLogo(chain.chain_name)!} />
+              <Chain name={chain.chain_name} logo={getChainLogo(chain.chain_name)!} />
             </Stack >
             <Stack
               direction="vertical"
