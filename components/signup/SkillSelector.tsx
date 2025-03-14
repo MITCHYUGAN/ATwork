@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Select from "react-select";
+import Select, { MultiValue, ActionMeta } from "react-select";
 import styles from "../../styles/skillselector.module.css";
 
 interface SkillOption {
@@ -34,8 +34,10 @@ const groupedOptions = [
 const SkillSelector: React.FC = () => {
   const [selectedSkills, setSelectedSkills] = useState<SkillOption[]>([]);
 
-  const handleChange = (selected: SkillOption[] | null) => {
-    setSelectedSkills(selected || []);
+  const handleChange = (
+    selected: MultiValue<SkillOption>,
+  ) => {
+    setSelectedSkills([...selected]); // Convert readonly array to mutable array
   };
 
   return (
