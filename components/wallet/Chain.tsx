@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { Box, Text, Stack, useColorModeValue } from '@interchain-ui/react'
 
 export type ChainProps = {
-  name: string;
+  name: string | undefined;
   logo?: string;
 }
 
