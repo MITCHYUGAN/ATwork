@@ -5,16 +5,18 @@
     align-items: center;
     min-height: 100vh;
     padding-bottom: 50px;
-
+    
     .freelancerPage{
         margin-top: 100px;
+        flex-direction: row;
         display: flex;
         gap: 20px;
         width: 90%;
         justify-content: space-between;
+        align-items: flex-start;
         
         .freelancerProjects{
-            min-height: 50vh;
+            /* min-height: 50vh; */
             width: min(100%);
             padding: 25px;
             background-color: #FFFFFF;
@@ -118,7 +120,7 @@
             flex-direction: column;
             gap: 20px;
             
-            .freelancerNotifi{
+            .freelancerNotifi, .freelanceractiveproject{
                 border: 1px solid #E4E4E7;
                 border-radius: 14px;
                 background-color: #FFFFFF;
@@ -128,7 +130,7 @@
                 flex-direction: column;
                 align-items: center;
 
-                .freelancerNotifiH1{
+                .freelancerNotifiH1, .freelanceractiveprojecth1{
                     width: 100%;
                     border-bottom: 1px solid #E4E4E7;
                     color: #7E8082;
@@ -137,17 +139,58 @@
                     padding: 16px 24px;
                 }
 
-                .freelancerNotifidiv{
+                .freelancerNotifip{
+                    /* font-weight: 300; */
+                    font-size: 10px;
+                }
+
+                .freelancerNotifidiv, .freelanceractiveprojectdiv{
                     display: flex;
                     align-items: center;
                     gap: 16px;
                     margin-top: 20px;
 
-                    .freelancerNotifiH2{
+                    .freelancerNotifiH2, .freelanceractiveprojectp{
                         font-size: 15px;
                         font-weight: 400;
                         color: #545756;
                     }
+                }
+
+                .freelanceractiveprojectdiv{
+                    flex-direction: column;
+                }
+            }
+
+            .clientGetStarted{
+                background-color: #18181B;
+                border-radius: 14px;
+                height: min(230px);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+                padding: 30px;
+                gap: 15px;
+                position: relative;
+                overflow: hidden;
+
+                .clientGetStartedH1{
+                    font-size: 16px;
+                    color: #ffffffd9;
+                    font-weight: 700;
+                }
+
+                .clientGetStartedP{
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #f4f4f5a8;
+                }
+
+                .clientRocket{
+                    position: absolute;
+                    right: -5px;
+                    bottom: -5px;
                 }
             }
         }

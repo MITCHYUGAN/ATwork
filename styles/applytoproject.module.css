@@ -1,0 +1,81 @@
+.applytoproject {
+    position: absolute;
+    background-color: white;
+    width: 45%;
+    min-height: 70vh;
+    box-shadow: 1px 1px 0px 1000px rgba(0, 0, 0, 0.542);
+    z-index: 10;
+    top: 80px;
+    border: 1px solid #E4E4E7;
+    border-radius: 14px;
+    background-color: var(--modal-bg);
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: flex-start;
+    padding: 50px;
+
+    .closeapplytoprojectModal {
+        position: absolute;
+        top: 30px;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        background: none; 
+        color: #2684FF;
+        cursor: pointer;
+        padding: 0;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "Poppins", serif;
+    }
+
+    .applytoprojectheader{
+        display: flex;
+        flex-direction: column;
+        margin-top: 50px;
+        gap: 10px;
+    }
+
+    .applytoprojectform{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+
+        .applytoprojectformlabel{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+    
+            .applytoprojectformlabelp {
+                font-size: 16px;
+                font-weight: 600;
+                color: #545756;
+                display: flex;
+                gap: 3px;
+            
+                .required {
+                    color: red;
+                }
+            }
+        
+            .applytoprojectformmessage_to_client{
+                min-height: 200px;
+                padding: 10px 16px;
+                font-family: "Poppins", serif;
+                border: 1px solid #BEBEBE;
+                font-size: 16px;
+                border-radius: 7px;
+                max-width: 100%;
+            }
+        }
+
+        .formbtn{
+            font-family: "Poppins", serif;
+        }
+    }
+
+
+}

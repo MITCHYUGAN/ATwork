@@ -19,6 +19,7 @@ body {
   --ptext-weight: 400;
   --ptext-size: 18px;
   --heading-weight: 600;
+  --modal-bg: #F4F4F5;
 }
 
 a {
@@ -68,11 +69,11 @@ main{
   align-items: center;
 }
 
-button{
+button, Button{
   font-family: "Poppins", serif;
 }
 
-h1, h2, h3, p{
+h1, h2, h3, h4, h5, p{
   margin: 0;
 }
 

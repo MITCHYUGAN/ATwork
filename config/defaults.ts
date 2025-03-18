@@ -28,7 +28,7 @@ export const STARGAZE_COINGECKO_ID = STARGAZE_TOKEN.coingecko_id || 'stargaze';
 
 
 // Neutron testnet configuration
-export const CONTRACT_ADDRESS = "neutron1z5uupxh3x80hnmw35n7mh07gnsn264wldd3gyfh0g2cnmzqvhv2q8jv888";
+export const CONTRACT_ADDRESS = "neutron1xjcq6m5fyljxmekjlrcj2p39x0m339qty72fz893n9990r6jw4zqqvzfkm";
 export const CHAIN_ID = "pion-1";
 export const RPC_ENDPOINT = "https://rpc-palvus.pion-1.ntrn.tech";
 
@@ -36,3 +36,5 @@ export const RPC_ENDPOINT = "https://rpc-palvus.pion-1.ntrn.tech";
 // queryFunc
 
 // Execute Func
+
+// Accept proposal

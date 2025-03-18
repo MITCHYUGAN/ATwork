@@ -1,11 +1,16 @@
-import React, { useState } from "react";
-import Select, { MultiValue, ActionMeta } from "react-select";
+import React from "react";
+import Select, { MultiValue } from "react-select";
 import styles from "../../styles/skillselector.module.css";
 
 interface SkillOption {
   label: string;
   value: string;
   category: string;
+}
+
+interface SkillSelectorProps {
+  value: string[];
+  onSkillsChange: (skills: string[]) => void;
 }
 
 const skillOptions: SkillOption[] = [
@@ -31,13 +36,12 @@ const groupedOptions = [
   },
 ];
 
-const SkillSelector: React.FC = () => {
-  const [selectedSkills, setSelectedSkills] = useState<SkillOption[]>([]);
+const SkillSelector: React.FC<SkillSelectorProps> = ({ value, onSkillsChange }) => {
+  const selectedSkills = skillOptions.filter((skill) => value.includes(skill.value));
 
-  const handleChange = (
-    selected: MultiValue<SkillOption>,
-  ) => {
-    setSelectedSkills([...selected]); // Convert readonly array to mutable array
+  const handleChange = (selected: MultiValue<SkillOption>) => {
+    const skills = selected.map((skill) => skill.value);
+    onSkillsChange(skills);
   };
 
   return (

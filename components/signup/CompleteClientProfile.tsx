@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { CHAIN_ID, CONTRACT_ADDRESS, RPC_ENDPOINT } from "@/config";
 
 declare global {
-    interface Window extends KeplrWindow {}
+    interface Window extends KeplrWindow { }
 }
 
 interface CompleteClientProfileProps {
@@ -134,7 +134,9 @@ export function CompleteClientProfile({ setProfile }: CompleteClientProfileProps
                     </div>
                     <div>
                         <label className={styles.formlabel} htmlFor="bio">
-                            <p>Bio</p>
+                            <p className={styles.formlabeltext}>
+                                Bio<span className={styles.required}>*</span>
+                            </p>
                             <textarea className={`${styles.forminput} ${styles.formBio}`} name="bio" id="bio" required></textarea>
                         </label>
                     </div>

@@ -7,14 +7,20 @@ import styles from "../styles/client.module.css"
 import notificationimg from "../assets/notificationing.svg"
 import postProjectImg from "../assets/postProjectImg.svg"
 import rocket from "../assets/rocket.svg"
-import PostProject from "@/components/common/PostProject";
+import PostProject from "@/components/actions/PostProject";
 import { useState } from "react";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
+import Notifications from "@/components/common/Notification";
+import ApproveProject from "@/components/actions/ApproveProject";
 
 
 export default function Client() {
     const { status } = useChain(CHAIN_NAME)
-    const [postprojectmodalactive, setPostProjectModalActive] = useState(true)
+    const [postprojectmodalactive, setPostProjectModalActive] = useState(false)
+    const [notificationModalActive, setNotificationModalActive] = useState(false)
+    const [approveProjectModalActive, setApproveProjectModalActive] = useState(false)
+    const [proposalSubmitted, setProposalSubmitted] = useState(false)
+    const [projectSubmitted, setProjectSubmitted] = useState(false)
     const [name, setName] = useState("")
 
     const getProfileName = async () => {
@@ -35,7 +41,6 @@ export default function Client() {
         const profile = await client.queryContractSmart(CONTRACT_ADDRESS, getProfileQuery);
         setName(profile.profile.name)
     }
-
     getProfileName()
 
     return (
@@ -62,9 +67,27 @@ export default function Client() {
                                 <img src={notificationimg.src} alt="" />
                                 <div>
                                     <h2 className={styles.clientNotifiH2}>ATwork profile created succes...</h2>
-                                    <p>now</p>
+                                    <p className={styles.clientNotifip}>Now</p>
                                 </div>
                             </div>
+                            {proposalSubmitted && (
+                                <div onClick={() => setNotificationModalActive(true)} className={`${styles.clientNotifidiv} ${styles.clientNotifiProposal}`}>
+                                    <img src={notificationimg.src} alt="" />
+                                    <div>
+                                        <h2 className={styles.clientNotifiH2}>You have a proposal for the pr...</h2>
+                                        <p className={styles.clientNotifip}>Now</p>
+                                    </div>
+                                </div>
+                            )}
+                            {projectSubmitted && (
+                                <div onClick={() => setApproveProjectModalActive(true)} className={`${styles.clientNotifidiv} ${styles.clientNotifiProposal}`}>
+                                    <img src={notificationimg.src} alt="" />
+                                    <div>
+                                        <h2 className={styles.clientNotifiH2}>Freelancer has made a submi...</h2>
+                                        <p className={styles.clientNotifip}>Now</p>
+                                    </div>
+                                </div>
+                            )}
                         </section>
                         <section className={styles.clientGetStarted}>
                             <h1 className={styles.clientGetStartedH1}>Get started</h1>
@@ -76,6 +99,8 @@ export default function Client() {
                 </div>
             </main>
             {postprojectmodalactive && <PostProject setPostProjectModalActive={setPostProjectModalActive} />}
+            {notificationModalActive && <Notifications setNotificationModalActive={setNotificationModalActive} />}
+            {approveProjectModalActive && <ApproveProject setApproveProjectModalActive={setApproveProjectModalActive} />}
         </div>
     )
 }

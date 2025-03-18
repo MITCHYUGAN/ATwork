@@ -3,6 +3,7 @@ import NextLink from 'next/link';
 import styles from "../../styles/completefreelancerprofile.module.css"
 import freelancerCover from "../../assets/freelancercover.jpeg"
 import SkillSelector from './SkillSelector';
+import { useState } from 'react';
 
 interface CompleteFreelancerProfileProps {
     setProfile: (value: string) => void;
@@ -10,6 +11,13 @@ interface CompleteFreelancerProfileProps {
 
 export function CompleteFreelancerProfile({ setProfile }: CompleteFreelancerProfileProps) {
 
+    const [formData, setFormData] = useState({
+        skills: [] as string[],
+    });
+
+    const handleSkillsChange = (skills: string[]) => {
+        setFormData({ ...formData, skills });
+    };
 
     return (
         <section className={styles.completefreelancerprofile}>
@@ -35,7 +43,10 @@ export function CompleteFreelancerProfile({ setProfile }: CompleteFreelancerProf
                         </label>
                     </div>
                     <div className={styles.formskills}>
-                        <SkillSelector />
+                        <SkillSelector
+                            value={formData.skills}
+                            onSkillsChange={handleSkillsChange}
+                        />
                     </div>
                     <div className={styles.social_hourly_rate}>
                         <label htmlFor="social" className={`${styles.formsocial} ${styles.formlabel}`}>
