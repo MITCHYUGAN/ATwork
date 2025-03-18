@@ -19,7 +19,7 @@ export default function Client() {
     const [postprojectmodalactive, setPostProjectModalActive] = useState(false)
     const [notificationModalActive, setNotificationModalActive] = useState(false)
     const [approveProjectModalActive, setApproveProjectModalActive] = useState(false)
-    const [proposalSubmitted, setProposalSubmitted] = useState(false)
+    const [proposalSubmitted, setProposalSubmitted] = useState(true)
     const [projectSubmitted, setProjectSubmitted] = useState(false)
     const [name, setName] = useState("")
 

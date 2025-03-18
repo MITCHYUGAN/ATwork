@@ -18,7 +18,7 @@ export default function Notifications({ setNotificationModalActive }: Notificati
             <div className={styles.notificationstexts}>
                 <h5>Here is a note for you :) 👇</h5>
                 <p>
-                    I'm looking to write about Interchain UI next, I was wondering if there was a documentation for the styles.
+                    I&apos;m looking to write about Interchain UI next, I was wondering if there was a documentation for the styles.
                     Because I want to build a simple react app and style it using the tool.
                     that way it will be easier for Frontend(JS) Devs to understand and start implementing.
                     I'm looking to write about Interchain UI next, I was wondering if there was a documentation for the styles.

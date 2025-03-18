@@ -9,7 +9,7 @@ export default function Service(){
             <header className={styles.serviceheader}>
                 <h1 className={styles.serviceheaderh1}>Popular Service</h1>
                 <p className={styles.serviceheaderp}>Freelancing offers a wide range of in-demand services from web development and design 
-                to content creation, marketing, and beyond. Whatever your project needs, we’ve got the talent to make it happen.</p>
+                to content creation, marketing, and beyond. Whatever your project needs, we&apos;ve got the talent to make it happen.</p>
             </header>
             <div className={styles.serviceimgs}>
                 <img className={styles.serviceimg} src={serviceimg.src} alt="" />

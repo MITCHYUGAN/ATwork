@@ -26,7 +26,7 @@ export default function ApplyToProject({ setApplyToProjectModalActive }: ApplyTo
                         Message to Client
                         <span className={styles.required}> *</span>
                     </p>
-                    <textarea name="message_to_client" className={styles.applytoprojectformmessage_to_client} id="message_to_client" placeholder="I like to be contacted through my email: " />
+                    <textarea name="message_to_client" className={styles.applytoprojectformmessage_to_client} id="message_to_client" placeholder="I like to be contacted through my email:" />
                 </label>
                 <Button onClick={applyToProject} className={styles.formbtn} rightIcon="arrowRightLine">Apply to Project</Button>
             </form>

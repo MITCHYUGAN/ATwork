@@ -15,7 +15,7 @@ export function Footer() {
                     <img src={logo.src} alt="" />
                     <p>Connect with high-paying clients and discover top-tier talent all in one place, with just a single profile.</p>
                     <p>
-                        Note: ATwork operates independently of state-sponsored fiat currencies. All payments are transacted in Atoms, our secure and efficient digital currency, ensuring seamless, borderless transactions.
+                        Note: ATwork operates independently of state-sponsored fiat currencies. All payments are transacted in Atoms, our secure and efficient digital currency, ensuring seamless, borderless transactions.
                     </p>
                 </div>
                 <ul className={styles.footerlist}>
