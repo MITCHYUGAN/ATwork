@@ -36,10 +36,18 @@ export function SignUp({ isConnectWallet }: { isConnectWallet: boolean }) {
                 const getProfileQuery = { get_profile: { address } };
                 const profile = await client.queryContractSmart(CONTRACT_ADDRESS, getProfileQuery);
 
+                console.log("profile", profile);
+                console.log("profile profile", profile.profile.profile_type);
+
                 if (profile) {
                     setHasProfile(true);
-                    router.push("/client");  // ✅ Use Next.js navigation instead of window.location.href
+                    if (profile.profile.profile_type === "Client"){
+                        router.push("/client");
+                    } else if (profile.profile.profile_type === "Freelancer"){
+                        router.push("/freelancer");
+                    }
                 }
+
             } catch (err: any) {
                 if (err.message.includes("not found")) {
                     setHasProfile(false);  // No profile found

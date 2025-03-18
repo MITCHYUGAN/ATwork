@@ -101,102 +101,102 @@ export default function PostProject({ setPostProjectModalActive }: PostProjectPr
         setFormData({ ...formData, skills });
     };
 
-    const submitPostProject = async (e: React.FormEvent) => {
-        e.preventDefault();
+    // const submitPostProject = async (e: React.FormEvent) => {
+    //     e.preventDefault();
 
-        // Validate form data
-        if (!formData.title || !formData.description || !formData.budget || !formData.timeframe || formData.skills.length === 0) {
-            alert("All fields are required.");
-            return;
-        }
+    //     // Validate form data
+    //     if (!formData.title || !formData.description || !formData.budget || !formData.timeframe || formData.skills.length === 0) {
+    //         alert("All fields are required.");
+    //         return;
+    //     }
 
-        try {
-            if (!window.keplr) {
-                alert("Keplr Wallet not detected. Please install the Keplr extension.");
-                return;
-            }
+    //     try {
+    //         if (!window.keplr) {
+    //             alert("Keplr Wallet not detected. Please install the Keplr extension.");
+    //             return;
+    //         }
 
-            // Example: Convert budget to smallest unit (assuming 6 decimals, like uATOM)
-            const decimals = 6;
-            const budgetInSmallestUnit = Math.floor(parseFloat(formData.budget) * Math.pow(10, decimals)).toString();
+    //         // Example: Convert budget to smallest unit (assuming 6 decimals, like uATOM)
+    //         const decimals = 6;
+    //         const budgetInSmallestUnit = Math.floor(parseFloat(formData.budget) * Math.pow(10, decimals)).toString();
 
-            // Get the connected wallet address
-            const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
-            const accounts = await offlineSigner.getAccounts();
-            const address = accounts[0].address;
+    //         // Get the connected wallet address
+    //         const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
+    //         const accounts = await offlineSigner.getAccounts();
+    //         const address = accounts[0].address;
 
-            // Create a CosmWasm client
-            const client = await SigningCosmWasmClient.connectWithSigner(
-                RPC_ENDPOINT,
-                offlineSigner,
-                { gasPrice: GasPrice.fromString("0.025untrn") }
-            );
+    //         // Create a CosmWasm client
+    //         const client = await SigningCosmWasmClient.connectWithSigner(
+    //             RPC_ENDPOINT,
+    //             offlineSigner,
+    //             { gasPrice: GasPrice.fromString("0.025untrn") }
+    //         );
 
-            const tokenAddress = "neutron1sr60e2velepytzsdyuutcmccl9n2p2lu3pjcggllxyc9rzyu562sqegazj";
+    //         const tokenAddress = "neutron1sr60e2velepytzsdyuutcmccl9n2p2lu3pjcggllxyc9rzyu562sqegazj";
 
-            // Increase allowance for the contract to spend the client's tokens
-            const increaseAllowanceBeforeJobPostMsg = {
-                increase_allowance: {
-                    spender: CONTRACT_ADDRESS,
-                    amount: budgetInSmallestUnit,
-                },
-            };
+    //         // Increase allowance for the contract to spend the client's tokens
+    //         const increaseAllowanceBeforeJobPostMsg = {
+    //             increase_allowance: {
+    //                 spender: CONTRACT_ADDRESS,
+    //                 amount: budgetInSmallestUnit,
+    //             },
+    //         };
 
-            // Execute the increase_allowance message on the token contract
-            const allowanceResult = await client.execute(
-                address,
-                tokenAddress,
-                increaseAllowanceBeforeJobPostMsg,
-                "auto"
-            );
-            console.log("Allowance increased successfully:", allowanceResult);
+    //         // Execute the increase_allowance message on the token contract
+    //         const allowanceResult = await client.execute(
+    //             address,
+    //             tokenAddress,
+    //             increaseAllowanceBeforeJobPostMsg,
+    //             "auto"
+    //         );
+    //         console.log("Allowance increased successfully:", allowanceResult);
 
-            // Prepare the PostJob message
-            const postJobMsg = {
-                post_job: {
-                    title: formData.title,
-                    description: formData.description,
-                    budget: budgetInSmallestUnit,
-                    deadline: parseInt(formData.timeframe) * 86400,
-                    deliverables: formData.skills,
-                },
-            };
-            console.log("Post Job Message:", postJobMsg);
+    //         // Prepare the PostJob message
+    //         const postJobMsg = {
+    //             post_job: {
+    //                 title: formData.title,
+    //                 description: formData.description,
+    //                 budget: budgetInSmallestUnit,
+    //                 deadline: parseInt(formData.timeframe) * 86400,
+    //                 deliverables: formData.skills,
+    //             },
+    //         };
+    //         console.log("Post Job Message:", postJobMsg);
 
-            // Execute the transaction
-            const result = await client.execute(
-                address,
-                CONTRACT_ADDRESS,
-                postJobMsg,
-                "auto",
-            );
+    //         // Execute the transaction
+    //         const result = await client.execute(
+    //             address,
+    //             CONTRACT_ADDRESS,
+    //             postJobMsg,
+    //             "auto",
+    //         );
 
 
-            console.log("Job posted successfully:", result);
-            alert("Job posted successfully!");
-            setPostProjectModalActive(false); // Close the modal
-        } catch (err: any) {
-            // console.error("Error posting job:", err);
-            // alert("Failed to post job. Please check the console for details.");
-            console.error("Error posting job:", err);
-            if (err.message.includes("Overflow")) {
-                alert("Failed to post job: There may be an issue with the smart contract's logic. Please contact the contract developer with the transaction details.");
-            } else if (err.message.includes("insufficient funds")) {
-                alert("Failed to post job: Insufficient funds in your wallet.");
-            } else if (err.message.includes("Insufficient allowance")) {
-                alert("Failed to post job: Insufficient allowance. Please try again to increase the allowance.");
-            } else if (err.message.includes("Insufficient token balance")) {
-                alert("Failed to post job: Insufficient tATOM balance in your wallet.");
-            } else if (err.message.includes("Profile does not exists")) {
-                alert("Failed to post job: You need to create a client profile before posting a job.");
-            } else if (err.message.includes("Only clients can post jobs")) {
-                alert("Failed to post job: Only client profiles can post jobs. Please update your profile type to 'Client'.");
-            } else {
-                alert("Failed to post job. Please check the console for details.");
-            }
-        }
+    //         console.log("Job posted successfully:", result);
+    //         alert("Job posted successfully!");
+    //         setPostProjectModalActive(false); // Close the modal
+    //     } catch (err: any) {
+    //         // console.error("Error posting job:", err);
+    //         // alert("Failed to post job. Please check the console for details.");
+    //         console.error("Error posting job:", err);
+    //         if (err.message.includes("Overflow")) {
+    //             alert("Failed to post job: There may be an issue with the smart contract's logic. Please contact the contract developer with the transaction details.");
+    //         } else if (err.message.includes("insufficient funds")) {
+    //             alert("Failed to post job: Insufficient funds in your wallet.");
+    //         } else if (err.message.includes("Insufficient allowance")) {
+    //             alert("Failed to post job: Insufficient allowance. Please try again to increase the allowance.");
+    //         } else if (err.message.includes("Insufficient token balance")) {
+    //             alert("Failed to post job: Insufficient tATOM balance in your wallet.");
+    //         } else if (err.message.includes("Profile does not exists")) {
+    //             alert("Failed to post job: You need to create a client profile before posting a job.");
+    //         } else if (err.message.includes("Only clients can post jobs")) {
+    //             alert("Failed to post job: Only client profiles can post jobs. Please update your profile type to 'Client'.");
+    //         } else {
+    //             alert("Failed to post job. Please check the console for details.");
+    //         }
+    //     }
 
-    };
+    // };
 
 
     // const testTransferFrom = async () => {
@@ -276,162 +276,162 @@ export default function PostProject({ setPostProjectModalActive }: PostProjectPr
     //     }
     // };
 
-    // const submitPostProject = async (e: React.FormEvent) => {
-    //     e.preventDefault();
+    const submitPostProject = async (e: React.FormEvent) => {
+        e.preventDefault();
 
-    //     // Validate form data
-    //     if (!formData.title || !formData.description || !formData.budget || !formData.timeframe || formData.skills.length === 0) {
-    //         alert("All fields are required.");
-    //         return;
-    //     }
+        // Validate form data
+        if (!formData.title || !formData.description || !formData.budget || !formData.timeframe || formData.skills.length === 0) {
+            alert("All fields are required.");
+            return;
+        }
 
-    //     // Validate budget (ensure it's a valid positive number)
-    //     const budgetValue = parseFloat(formData.budget);
-    //     if (isNaN(budgetValue) || budgetValue <= 0) {
-    //         alert("Budget must be a valid positive number.");
-    //         return;
-    //     }
+        // Validate budget (ensure it's a valid positive number)
+        const budgetValue = parseFloat(formData.budget);
+        if (isNaN(budgetValue) || budgetValue <= 0) {
+            alert("Budget must be a valid positive number.");
+            return;
+        }
 
-    //     try {
-    //         // Check if Keplr is installed
-    //         if (!window.keplr) {
-    //             alert("Keplr Wallet not detected. Please install the Keplr extension.");
-    //             return;
-    //         }
+        try {
+            // Check if Keplr is installed
+            if (!window.keplr) {
+                alert("Keplr Wallet not detected. Please install the Keplr extension.");
+                return;
+            }
 
-    //         // Get the connected wallet address
-    //         const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
-    //         const accounts = await offlineSigner.getAccounts();
-    //         const address = accounts[0].address;
+            // Get the connected wallet address
+            const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
+            const accounts = await offlineSigner.getAccounts();
+            const address = accounts[0].address;
 
-    //         // Create a CosmWasm client
-    //         const client = await SigningCosmWasmClient.connectWithSigner(
-    //             RPC_ENDPOINT,
-    //             offlineSigner,
-    //             { gasPrice: GasPrice.fromString("0.025untrn") }
-    //         );
+            // Create a CosmWasm client
+            const client = await SigningCosmWasmClient.connectWithSigner(
+                RPC_ENDPOINT,
+                offlineSigner,
+                { gasPrice: GasPrice.fromString("0.025untrn") }
+            );
 
-    //         const tokenAddress = "neutron1sr60e2velepytzsdyuutcmccl9n2p2lu3pjcggllxyc9rzyu562sqegazj";
+            const tokenAddress = "neutron1sr60e2velepytzsdyuutcmccl9n2p2lu3pjcggllxyc9rzyu562sqegazj";
 
-    //         // Convert budget to smallest unit (assuming 6 decimals for tATOM)
-    //         const decimals = 6;
-    //         const budgetInSmallestUnit = Math.floor(budgetValue * Math.pow(10, decimals)).toString();
-    //         console.log(`Budget in smallest unit (utATOM): ${budgetInSmallestUnit}`);
+            // Convert budget to smallest unit (assuming 6 decimals for tATOM)
+            const decimals = 6;
+            const budgetInSmallestUnit = Math.floor(budgetValue * Math.pow(10, decimals)).toString();
+            console.log(`Budget in smallest unit (utATOM): ${budgetInSmallestUnit}`);
 
-    //         // Check wallet balance
-    //         const balanceQuery = {
-    //             balance: {
-    //                 address: address,
-    //             },
-    //         };
-    //         const walletBalance = await client.queryContractSmart(tokenAddress, balanceQuery);
-    //         console.log("Your tATOM balance:", walletBalance.balance);
-    //         if (parseInt(walletBalance.balance) < parseInt(budgetInSmallestUnit)) {
-    //             alert(`Insufficient tATOM balance in your wallet. Required: ${budgetValue} tATOM, Available: ${parseInt(walletBalance.balance) / Math.pow(10, decimals)} tATOM`);
-    //             return;
-    //         }
+            // Check wallet balance
+            const balanceQuery = {
+                balance: {
+                    address: address,
+                },
+            };
+            const walletBalance = await client.queryContractSmart(tokenAddress, balanceQuery);
+            console.log("Your tATOM balance:", walletBalance.balance);
+            if (parseInt(walletBalance.balance) < parseInt(budgetInSmallestUnit)) {
+                alert(`Insufficient tATOM balance in your wallet. Required: ${budgetValue} tATOM, Available: ${parseInt(walletBalance.balance) / Math.pow(10, decimals)} tATOM`);
+                return;
+            }
 
-    //         // Check current allowance
-    //         const allowanceQuery = {
-    //             allowance: {
-    //                 owner: address,
-    //                 spender: CONTRACT_ADDRESS,
-    //             },
-    //         };
-    //         const currentAllowance = await client.queryContractSmart(tokenAddress, allowanceQuery);
-    //         console.log("Current allowance:", currentAllowance.allowance);
+            // Check current allowance
+            const allowanceQuery = {
+                allowance: {
+                    owner: address,
+                    spender: CONTRACT_ADDRESS,
+                },
+            };
+            const currentAllowance = await client.queryContractSmart(tokenAddress, allowanceQuery);
+            console.log("Current allowance:", currentAllowance.allowance);
 
-    //         // Increase allowance if necessary
-    //         if (parseInt(currentAllowance.allowance) < parseInt(budgetInSmallestUnit)) {
-    //             const increaseAllowanceBeforeJobPostMsg = {
-    //                 increase_allowance: {
-    //                     spender: CONTRACT_ADDRESS,
-    //                     amount: budgetInSmallestUnit,
-    //                 },
-    //             };
-    //             const allowanceResult = await client.execute(
-    //                 address,
-    //                 tokenAddress,
-    //                 increaseAllowanceBeforeJobPostMsg,
-    //                 "auto"
-    //             );
-    //             console.log("Allowance increased successfully:", allowanceResult);
-    //         }
+            // Increase allowance if necessary
+            if (parseInt(currentAllowance.allowance) < parseInt(budgetInSmallestUnit)) {
+                const increaseAllowanceBeforeJobPostMsg = {
+                    increase_allowance: {
+                        spender: CONTRACT_ADDRESS,
+                        amount: budgetInSmallestUnit,
+                    },
+                };
+                const allowanceResult = await client.execute(
+                    address,
+                    tokenAddress,
+                    increaseAllowanceBeforeJobPostMsg,
+                    "auto"
+                );
+                console.log("Allowance increased successfully:", allowanceResult);
+            }
 
-    //         // Check job contract's token balance (for debugging purposes)
-    //         const contractBalanceQuery = {
-    //             balance: {
-    //                 address: CONTRACT_ADDRESS,
-    //             },
-    //         };
-    //         const contractBalance = await client.queryContractSmart(tokenAddress, contractBalanceQuery);
-    //         console.log("Job contract's tATOM balance:", contractBalance.balance);
+            // Check job contract's token balance (for debugging purposes)
+            const contractBalanceQuery = {
+                balance: {
+                    address: CONTRACT_ADDRESS,
+                },
+            };
+            const contractBalance = await client.queryContractSmart(tokenAddress, contractBalanceQuery);
+            console.log("Job contract's tATOM balance:", contractBalance.balance);
 
-    //         // Prepare the PostJob message (must match the smart contract's expectations)
-    //         const postJobMsg = {
-    //             post_job: {
-    //                 title: formData.title,
-    //                 description: formData.description,
-    //                 budget: budgetInSmallestUnit, // Must be a string representing a Uint128
-    //                 deadline: parseInt(formData.timeframe) * 86400, // Convert days to seconds
-    //                 deliverables: formData.skills, // Array of strings
-    //             },
-    //         };
-    //         console.log("Post Job Message:", postJobMsg);
+            // Prepare the PostJob message (must match the smart contract's expectations)
+            const postJobMsg = {
+                post_job: {
+                    title: formData.title,
+                    description: formData.description,
+                    budget: budgetInSmallestUnit, // Must be a string representing a Uint128
+                    deadline: parseInt(formData.timeframe) * 86400, // Convert days to seconds
+                    deliverables: formData.skills, // Array of strings
+                },
+            };
+            console.log("Post Job Message:", postJobMsg);
 
-    //         // // Simulate the transaction to estimate gas and catch errors early
-    //         // try {
-    //         //     const estimatedGas = await client.simulate(
-    //         //         address,
-    //         //         [
-    //         //             {
-    //         //                 typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
-    //         //                 value: {
-    //         //                     sender: address,
-    //         //                     contract: CONTRACT_ADDRESS,
-    //         //                     msg: Buffer.from(JSON.stringify(postJobMsg)),
-    //         //                     funds: [],
-    //         //                 },
-    //         //             },
-    //         //         ],
-    //         //         undefined // Memo (optional)
-    //         //     );
-    //         //     console.log("Simulation successful, estimated gas:", estimatedGas);
-    //         // } catch (simulationError) {
-    //         //     console.error("Simulation failed:", simulationError);
-    //         //     throw new Error("Transaction simulation failed. Please check the console for details.");
-    //         // }
+            // // Simulate the transaction to estimate gas and catch errors early
+            // try {
+            //     const estimatedGas = await client.simulate(
+            //         address,
+            //         [
+            //             {
+            //                 typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
+            //                 value: {
+            //                     sender: address,
+            //                     contract: CONTRACT_ADDRESS,
+            //                     msg: Buffer.from(JSON.stringify(postJobMsg)),
+            //                     funds: [],
+            //                 },
+            //             },
+            //         ],
+            //         undefined // Memo (optional)
+            //     );
+            //     console.log("Simulation successful, estimated gas:", estimatedGas);
+            // } catch (simulationError) {
+            //     console.error("Simulation failed:", simulationError);
+            //     throw new Error("Transaction simulation failed. Please check the console for details.");
+            // }
 
-    //         // Execute the transaction
-    //         const result = await client.execute(
-    //             address,
-    //             CONTRACT_ADDRESS,
-    //             postJobMsg,
-    //             "auto"
-    //         );
+            // Execute the transaction
+            const result = await client.execute(
+                address,
+                CONTRACT_ADDRESS,
+                postJobMsg,
+                "auto"
+            );
 
-    //         console.log("Job posted successfully:", result);
-    //         alert("Job posted successfully!");
-    //         setPostProjectModalActive(false); // Close the modal
-    //     } catch (err: any) {
-    //         console.error("Error posting job:", err);
-    //         if (err.message.includes("Overflow")) {
-    //             alert("Failed to post job: There may be an issue with the smart contract's logic. Please contact the contract developer with the transaction details.");
-    //         } else if (err.message.includes("insufficient funds")) {
-    //             alert("Failed to post job: Insufficient funds in your wallet.");
-    //         } else if (err.message.includes("Insufficient allowance")) {
-    //             alert("Failed to post job: Insufficient allowance. Please try again to increase the allowance.");
-    //         } else if (err.message.includes("Insufficient token balance")) {
-    //             alert("Failed to post job: Insufficient tATOM balance in your wallet.");
-    //         } else if (err.message.includes("Profile does not exists")) {
-    //             alert("Failed to post job: You need to create a client profile before posting a job.");
-    //         } else if (err.message.includes("Only clients can post jobs")) {
-    //             alert("Failed to post job: Only client profiles can post jobs. Please update your profile type to 'Client'.");
-    //         } else {
-    //             alert("Failed to post job. Please check the console for details.");
-    //         }
-    //     }
-    // };
+            console.log("Job posted successfully:", result);
+            alert("Job posted successfully!");
+            setPostProjectModalActive(false); // Close the modal
+        } catch (err: any) {
+            console.error("Error posting job:", err);
+            if (err.message.includes("Overflow")) {
+                alert("Failed to post job: There may be an issue with the smart contract's logic. Please contact the contract developer with the transaction details.");
+            } else if (err.message.includes("insufficient funds")) {
+                alert("Failed to post job: Insufficient funds in your wallet.");
+            } else if (err.message.includes("Insufficient allowance")) {
+                alert("Failed to post job: Insufficient allowance. Please try again to increase the allowance.");
+            } else if (err.message.includes("Insufficient token balance")) {
+                alert("Failed to post job: Insufficient tATOM balance in your wallet.");
+            } else if (err.message.includes("Profile does not exists")) {
+                alert("Failed to post job: You need to create a client profile before posting a job.");
+            } else if (err.message.includes("Only clients can post jobs")) {
+                alert("Failed to post job: Only client profiles can post jobs. Please update your profile type to 'Client'.");
+            } else {
+                alert("Failed to post job. Please check the console for details.");
+            }
+        }
+    };
 
     return (
         <section className={styles.postproject}>

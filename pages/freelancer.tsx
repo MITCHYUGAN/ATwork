@@ -41,7 +41,7 @@ export default function Freelancer() {
     const { status } = useChain(CHAIN_NAME)
     const [applytoprojectmodalactive, setApplyToProjectModalActive] = useState(false)
     const [submitprojectmodalactive, setSubmitProjectModalActive] = useState(false)
-    const [proposalAccepted, setProposalAccepted] = useState(false)
+    const [proposalAccepted, setProposalAccepted] = useState(true)
 
     return (
         <div className={styles.freelancer}>

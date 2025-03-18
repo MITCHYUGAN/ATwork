@@ -8,40 +8,52 @@ import notificationimg from "../assets/notificationing.svg"
 import postProjectImg from "../assets/postProjectImg.svg"
 import rocket from "../assets/rocket.svg"
 import PostProject from "@/components/actions/PostProject";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
-import Notifications from "@/components/common/Notification";
 import ApproveProject from "@/components/actions/ApproveProject";
+import AcceptProposal from "@/components/actions/AcceptProposal";
 
 
 export default function Client() {
     const { status } = useChain(CHAIN_NAME)
     const [postprojectmodalactive, setPostProjectModalActive] = useState(false)
-    const [notificationModalActive, setNotificationModalActive] = useState(false)
+    const [acceptProposalModalActive, setAcceptProposalModalActive] = useState(false)
     const [approveProjectModalActive, setApproveProjectModalActive] = useState(false)
     const [proposalSubmitted, setProposalSubmitted] = useState(true)
-    const [projectSubmitted, setProjectSubmitted] = useState(false)
+    const [projectSubmitted, setProjectSubmitted] = useState(true)
     const [name, setName] = useState("")
 
     const getProfileName = async () => {
-
-        if (!window.keplr) {
-            alert("Keplr Wallet not detected. Please install the Keplr extension.");
-            return;
+        try{
+            if (!window.keplr) {
+                alert("Keplr Wallet not detected. Please install the Keplr extension.");
+                return;
+            }
+    
+            // Get the connected wallet address
+            const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
+            const accounts = await offlineSigner.getAccounts();
+            const address = accounts[0].address;
+    
+            // Query the contract to check if a profile exists
+            const client = await SigningCosmWasmClient.connect(RPC_ENDPOINT);
+            const getProfileQuery = { get_profile: { address } };
+            const profile = await client.queryContractSmart(CONTRACT_ADDRESS, getProfileQuery);
+            setName(profile.profile.name)
+        } catch (err) {
+            console.error("Error Getting Profile Name:", err);
         }
-
-        // Get the connected wallet address
-        const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
-        const accounts = await offlineSigner.getAccounts();
-        const address = accounts[0].address;
-
-        // Query the contract to check if a profile exists
-        const client = await SigningCosmWasmClient.connect(RPC_ENDPOINT);
-        const getProfileQuery = { get_profile: { address } };
-        const profile = await client.queryContractSmart(CONTRACT_ADDRESS, getProfileQuery);
-        setName(profile.profile.name)
     }
-    getProfileName()
+
+    // const verifyWalletConnected = () => {
+    //     status !== WalletStatus.Connected
+    //     window.location.href = "/join"; // Redirect to join page
+    // }
+
+    useEffect(() => {
+        getProfileName()
+        // verifyWalletConnected()
+    }, []);
 
     return (
         <div className={styles.client}>
@@ -59,19 +71,20 @@ export default function Client() {
                             <p>No active job posts or contracts at the moment.</p>
                             <Button onClick={() => setPostProjectModalActive(true)} className={styles.clientbtn}>+ Post a Project</Button>
                         </div>
+                        {/* Project should be dispayed on the client page also, when submitted. displayed here most likely*/}
                     </section>
                     <div className={styles.clientAside}>
                         <section className={styles.clientNotifi}>
                             <h1 className={styles.clientNotifiH1}>Notification</h1>
                             <div className={styles.clientNotifidiv}>
-                                <img src={notificationimg.src} alt="" />
+                                <img src={notificationimg.src} alt="" />    
                                 <div>
                                     <h2 className={styles.clientNotifiH2}>ATwork profile created succes...</h2>
                                     <p className={styles.clientNotifip}>Now</p>
                                 </div>
                             </div>
                             {proposalSubmitted && (
-                                <div onClick={() => setNotificationModalActive(true)} className={`${styles.clientNotifidiv} ${styles.clientNotifiProposal}`}>
+                                <div onClick={() => setAcceptProposalModalActive(true)} className={`${styles.clientNotifidiv} ${styles.clientNotifiProposal}`}>
                                     <img src={notificationimg.src} alt="" />
                                     <div>
                                         <h2 className={styles.clientNotifiH2}>You have a proposal for the pr...</h2>
@@ -99,7 +112,7 @@ export default function Client() {
                 </div>
             </main>
             {postprojectmodalactive && <PostProject setPostProjectModalActive={setPostProjectModalActive} />}
-            {notificationModalActive && <Notifications setNotificationModalActive={setNotificationModalActive} />}
+            {acceptProposalModalActive && <AcceptProposal setAcceptProposalModalActive={setAcceptProposalModalActive} />}
             {approveProjectModalActive && <ApproveProject setApproveProjectModalActive={setApproveProjectModalActive} />}
         </div>
     )
