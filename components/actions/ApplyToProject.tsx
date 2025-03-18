@@ -18,7 +18,7 @@ export default function ApplyToProject({ setApplyToProjectModalActive }: ApplyTo
             </button>
             <div className={styles.applytoprojectheader}>
                 <h1>Apply to project</h1>
-                <p>Please share some details to the client including how you'd prefer to be contacted.</p>
+                <p>Please share some details to the client including how you&apos;d prefer to be contacted.</p>
             </div>
             <form action="" className={styles.applytoprojectform}>
                 <label htmlFor="message_to_client" className={styles.applytoprojectformlabel}>
