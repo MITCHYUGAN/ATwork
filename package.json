@@ -46,9 +46,5 @@
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.3",
     "typescript": "^5.1.6"
-  },
-  "packageManager": "yarn@4.3.0",
-  "engines": {
-    "node": ">=16.9.0"
   }
 }
