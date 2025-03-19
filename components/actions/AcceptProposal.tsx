@@ -114,7 +114,7 @@ export default function AcceptProposal({ setAcceptProposalModalActive, jobId }: 
         </button>
         <div className={styles.acceptproposalheader}>
             <h1>Review Proposal</h1>
-            <p>Review the freelancer's proposal for "{job.title}"</p>
+            <p>Review the freelancer&apos;s proposal for &quot;{job.title}&quot;</p>
         </div>
         <div className={styles.acceptproposalcontent}>
             <h2>Proposal</h2>
