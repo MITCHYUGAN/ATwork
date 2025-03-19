@@ -77,6 +77,7 @@ export default function Freelancer() {
             }
         };
         getProfileNameAndAddress();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     // Fetch open jobs from Firestore
@@ -229,7 +230,7 @@ export default function Freelancer() {
                         {activeJobs.length === 0 ? (
                             <div className={styles.freelanceractiveprojectdiv}>
                                 <img src={activeprojectimg.src} alt="" />
-                                <p className={styles.freelanceractiveprojectp}>You don't have any active projects right now</p>
+                                <p className={styles.freelanceractiveprojectp}>You don&apos;t have any active projects right now</p>
                             </div>
                         ) : (
                             activeJobs.map((job) => (
