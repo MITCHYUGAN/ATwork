@@ -111,7 +111,7 @@ export default function ApproveProject({ setApproveProjectModalActive, jobId }: 
             </button>
             <div className={styles.approveprojectheader}>
                 <h1>Review Submission</h1>
-                <p>Review the freelancer's submission for &quot;{job.title}&quot;</p>
+                <p>Review the freelancer&apos;s submission for &quot;{job.title}&quot;</p>
             </div>
             <div className={styles.approveprojectcontent}>
                 <h2>Submission</h2>
