@@ -2095,6 +2095,11 @@
 "@next/swc-linux-x64-gnu@13.5.8":
   version "13.5.8"
 
+"@next/swc-linux-x64-musl@13.5.8":
+  version "13.5.8"
+  resolved "https://registry.npmjs.org/@next/swc-linux-x64-musl/-/swc-linux-x64-musl-13.5.8.tgz"
+  integrity sha512-NQICDU7X/tcAVkTEfvpkq5Z1EViodDj3m18wiyJ5wpzOFf4LH7vFjLBVCWNcf3/sfqv/yfD8jshqrffOPtZitg==
+
 "@noble/ciphers@1.2.1":
   version "1.2.1"
 
