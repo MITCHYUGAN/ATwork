@@ -1,0 +1,80 @@
+.acceptproposal {
+    position: absolute;
+    width: 55%;
+    min-height: 70vh;
+    box-shadow: 1px 1px 0px 1000px rgba(0, 0, 0, 0.542);
+    z-index: 10;
+    top: 70px;
+    border: 1px solid #E4E4E7;
+    border-radius: 14px;
+    background-color: var(--modal-bg);
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    padding: 50px;
+
+    .closeacceptproposalModal {
+        position: absolute;
+        top: 30px;
+        border: none;
+        outline: none;
+        border-radius: 4px;
+        background: none;
+        color: #2684FF;
+        cursor: pointer;
+        padding: 0;
+        font-size: 15px;
+        font-weight: 600;
+        font-family: "Poppins", serif;
+    }
+}
+
+.acceptproposalheader {
+    margin-bottom: 20px;
+    margin-top: 30px;
+}
+
+.acceptproposalheader h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+.acceptproposalheader p {
+    font-size: 14px;
+    color: #666;
+}
+
+.acceptproposalcontent h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.acceptproposalcontent p {
+    font-size: 14px;
+    margin: 5px 0;
+    color: #333;
+}
+
+.acceptproposalcontent .proposaltext {
+    color: rgb(24, 50, 24);
+}
+
+
+.acceptproposalform {
+    margin-top: 20px;
+}
+
+.formbtn {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.formbtn:hover {
+    background-color: #0056b3;
+}

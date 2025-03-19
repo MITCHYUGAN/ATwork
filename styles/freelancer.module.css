@@ -5,6 +5,7 @@
     align-items: center;
     min-height: 100vh;
     padding-bottom: 50px;
+    width: 100%;
     
     .freelancerPage{
         margin-top: 100px;
@@ -16,7 +17,7 @@
         align-items: flex-start;
         
         .freelancerProjects{
-            /* min-height: 50vh; */
+            min-height: 50vh;
             width: min(100%);
             padding: 25px;
             background-color: #FFFFFF;
@@ -114,7 +115,7 @@
         
         .freelancerAside{
             border-radius: 14px;
-            width: min(605px);
+            width: 500px;
             min-height: 0;
             display: flex;
             flex-direction: column;
@@ -125,10 +126,11 @@
                 border-radius: 14px;
                 background-color: #FFFFFF;
                 width: 100%;
-                height: min(230px);
+                min-height: min(230px);
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                padding-bottom: 20px;
 
                 .freelancerNotifiH1, .freelanceractiveprojecth1{
                     width: 100%;
@@ -157,12 +159,118 @@
                     }
                 }
 
+                .freelancerNotifidiv{
+                    width: 87%;
+                }
+
                 .freelanceractiveprojectdiv{
                     flex-direction: column;
                 }
+
+                .freelanceractiveprojectitem {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 10px;
+                    border-bottom: 1px solid #eee;
+                }
+                
+                .freelanceractiveprojectitem p {
+                    margin: 0;
+                    font-size: 14px;
+                }
+
+                .freelanceractiveproject {
+                    /* Existing styles */
+                    border: 1px solid #E4E4E7;
+                    border-radius: 14px;
+                    background-color: #FFFFFF;
+                    width: 100%;
+                    min-height: min(230px);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding-bottom: 20px;
+                }
+                
+                .freelanceractiveprojectitem {
+                    display: flex;
+                    flex-direction: column;
+                    width: 87%;
+                    padding: 15px;
+                    border-bottom: 1px solid #eee;
+                    margin-top: 20px;
+                }
+                
+                .activeProjectHeader {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin-bottom: 10px;
+                }
+                
+                .initialCircle {
+                    width: 40px;
+                    height: 40px;
+                    background-color: #3B82F6;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+                
+                .activeProjectTitle {
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin: 0;
+                    color: #333;
+                }
+                
+                .activeProjectBudget {
+                    font-size: 14px;
+                    color: #666;
+                    display: block;
+                }
+                
+                .activeProjectDetails {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-bottom: 15px;
+                    font-size: 12px;
+                    color: #666;
+                }
+                
+                .activeProjectStatus {
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                }
+                
+                .statusDot {
+                    color: #10B981; /* Green dot for "Active" */
+                    font-size: 10px;
+                }
+                
+                .submitButton {
+                    background-color: #3B82F6;
+                    color: white;
+                    padding: 10px 20px;
+                    border: none;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    width: 100%;
+                }
+                
+                .submitButton:hover {
+                    background-color: #2563EB;
+                }
             }
 
-            .clientGetStarted{
+            .freelancerGetStarted{
                 background-color: #18181B;
                 border-radius: 14px;
                 height: min(230px);
@@ -174,24 +282,34 @@
                 gap: 15px;
                 position: relative;
                 overflow: hidden;
+            }
 
-                .clientGetStartedH1{
-                    font-size: 16px;
-                    color: #ffffffd9;
-                    font-weight: 700;
-                }
+            .freelancerGetStarted h1{
+                font-size: 16px;
+                color: #ffffffd9;
+                font-weight: 700;
+            }
 
-                .clientGetStartedP{
-                    font-size: 14px;
-                    font-weight: 400;
-                    color: #f4f4f5a8;
-                }
+            .freelancerGetStarted p{
+                font-size: 14px;
+                font-weight: 400;
+                color: #f4f4f5a8;
+            }
 
-                .clientRocket{
-                    position: absolute;
-                    right: -5px;
-                    bottom: -5px;
-                }
+            .freelancerbtn{
+                color: white;
+                background-color: #545756;
+                border: none;
+                padding: 12px 20px;
+                border-radius: 6px;
+                font-weight: 500;
+                font-size: 15px;
+            }
+
+            .freelancerGetStarted img{
+                position: absolute;
+                right: -5px;
+                bottom: -5px;
             }
         }
     }

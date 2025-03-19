@@ -5,6 +5,8 @@ import SkillSelector from "../signup/SkillSelector";
 import { CHAIN_ID, CONTRACT_ADDRESS, RPC_ENDPOINT } from "@/config";
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { GasPrice } from "@cosmjs/stargate";
+import { db } from "@/lib/firebase" // Import Firebase Firestore
+import { collection, addDoc } from "firebase/firestore"
 
 interface PostProjectProps {
     setPostProjectModalActive: (value: boolean) => void;
@@ -101,181 +103,6 @@ export default function PostProject({ setPostProjectModalActive }: PostProjectPr
         setFormData({ ...formData, skills });
     };
 
-    // const submitPostProject = async (e: React.FormEvent) => {
-    //     e.preventDefault();
-
-    //     // Validate form data
-    //     if (!formData.title || !formData.description || !formData.budget || !formData.timeframe || formData.skills.length === 0) {
-    //         alert("All fields are required.");
-    //         return;
-    //     }
-
-    //     try {
-    //         if (!window.keplr) {
-    //             alert("Keplr Wallet not detected. Please install the Keplr extension.");
-    //             return;
-    //         }
-
-    //         // Example: Convert budget to smallest unit (assuming 6 decimals, like uATOM)
-    //         const decimals = 6;
-    //         const budgetInSmallestUnit = Math.floor(parseFloat(formData.budget) * Math.pow(10, decimals)).toString();
-
-    //         // Get the connected wallet address
-    //         const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
-    //         const accounts = await offlineSigner.getAccounts();
-    //         const address = accounts[0].address;
-
-    //         // Create a CosmWasm client
-    //         const client = await SigningCosmWasmClient.connectWithSigner(
-    //             RPC_ENDPOINT,
-    //             offlineSigner,
-    //             { gasPrice: GasPrice.fromString("0.025untrn") }
-    //         );
-
-    //         const tokenAddress = "neutron1sr60e2velepytzsdyuutcmccl9n2p2lu3pjcggllxyc9rzyu562sqegazj";
-
-    //         // Increase allowance for the contract to spend the client's tokens
-    //         const increaseAllowanceBeforeJobPostMsg = {
-    //             increase_allowance: {
-    //                 spender: CONTRACT_ADDRESS,
-    //                 amount: budgetInSmallestUnit,
-    //             },
-    //         };
-
-    //         // Execute the increase_allowance message on the token contract
-    //         const allowanceResult = await client.execute(
-    //             address,
-    //             tokenAddress,
-    //             increaseAllowanceBeforeJobPostMsg,
-    //             "auto"
-    //         );
-    //         console.log("Allowance increased successfully:", allowanceResult);
-
-    //         // Prepare the PostJob message
-    //         const postJobMsg = {
-    //             post_job: {
-    //                 title: formData.title,
-    //                 description: formData.description,
-    //                 budget: budgetInSmallestUnit,
-    //                 deadline: parseInt(formData.timeframe) * 86400,
-    //                 deliverables: formData.skills,
-    //             },
-    //         };
-    //         console.log("Post Job Message:", postJobMsg);
-
-    //         // Execute the transaction
-    //         const result = await client.execute(
-    //             address,
-    //             CONTRACT_ADDRESS,
-    //             postJobMsg,
-    //             "auto",
-    //         );
-
-
-    //         console.log("Job posted successfully:", result);
-    //         alert("Job posted successfully!");
-    //         setPostProjectModalActive(false); // Close the modal
-    //     } catch (err: any) {
-    //         // console.error("Error posting job:", err);
-    //         // alert("Failed to post job. Please check the console for details.");
-    //         console.error("Error posting job:", err);
-    //         if (err.message.includes("Overflow")) {
-    //             alert("Failed to post job: There may be an issue with the smart contract's logic. Please contact the contract developer with the transaction details.");
-    //         } else if (err.message.includes("insufficient funds")) {
-    //             alert("Failed to post job: Insufficient funds in your wallet.");
-    //         } else if (err.message.includes("Insufficient allowance")) {
-    //             alert("Failed to post job: Insufficient allowance. Please try again to increase the allowance.");
-    //         } else if (err.message.includes("Insufficient token balance")) {
-    //             alert("Failed to post job: Insufficient tATOM balance in your wallet.");
-    //         } else if (err.message.includes("Profile does not exists")) {
-    //             alert("Failed to post job: You need to create a client profile before posting a job.");
-    //         } else if (err.message.includes("Only clients can post jobs")) {
-    //             alert("Failed to post job: Only client profiles can post jobs. Please update your profile type to 'Client'.");
-    //         } else {
-    //             alert("Failed to post job. Please check the console for details.");
-    //         }
-    //     }
-
-    // };
-
-
-    // const testTransferFrom = async () => {
-    //     try {
-    //         if (!window.keplr) {
-    //             alert("Keplr Wallet not detected. Please install the Keplr extension.");
-    //             return;
-    //         }
-    
-    //         const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
-    //         const accounts = await offlineSigner.getAccounts();
-    //         const address = accounts[0].address;
-    
-    //         const client = await SigningCosmWasmClient.connectWithSigner(
-    //             RPC_ENDPOINT,
-    //             offlineSigner,
-    //             { gasPrice: GasPrice.fromString("0.025untrn") }
-    //         );
-    
-    //         const tokenAddress = "neutron1sr60e2velepytzsdyuutcmccl9n2p2lu3pjcggllxyc9rzyu562sqegazj";
-    //         const jobContractAddress = CONTRACT_ADDRESS; // Use the correct job contract address
-    //         const escrowAddress = "neutron1..."; // Replace with the actual escrow address (state.escrow_address)
-    
-    //         // Check current allowance
-    //         const allowanceQuery = {
-    //             allowance: {
-    //                 owner: address,
-    //                 spender: jobContractAddress,
-    //             },
-    //         };
-    //         const currentAllowance = await client.queryContractSmart(tokenAddress, allowanceQuery);
-    //         console.log("Current allowance before increase:", currentAllowance.allowance);
-    
-    //         // Increase allowance
-    //         const amountToTransfer = "1000000"; // 1 tATOM
-    //         if (parseInt(currentAllowance.allowance) < parseInt(amountToTransfer)) {
-    //             const increaseAllowanceMsg = {
-    //                 increase_allowance: {
-    //                     spender: jobContractAddress,
-    //                     amount: amountToTransfer,
-    //                 },
-    //             };
-    //             const allowanceResult = await client.execute(
-    //                 address,
-    //                 tokenAddress,
-    //                 increaseAllowanceMsg,
-    //                 "auto"
-    //             );
-    //             console.log("Allowance increased successfully:", allowanceResult);
-    
-    //             // Query allowance again to confirm it updated
-    //             const updatedAllowance = await client.queryContractSmart(tokenAddress, allowanceQuery);
-    //             console.log("Allowance after increase:", updatedAllowance.allowance);
-    //             if (parseInt(updatedAllowance.allowance) < parseInt(amountToTransfer)) {
-    //                 throw new Error("Allowance did not update correctly after increase.");
-    //             }
-    //         }
-    
-    //         // Execute transfer_from directly on the token contract
-    //         const transferFromMsg = {
-    //             transfer_from: {
-    //                 owner: address,
-    //                 recipient: escrowAddress,
-    //                 amount: amountToTransfer,
-    //             },
-    //         };
-    //         const transferResult = await client.execute(
-    //             address,
-    //             tokenAddress,
-    //             transferFromMsg,
-    //             "auto"
-    //         );
-    //         console.log("TransferFrom successful:", transferResult);
-    //     } catch (err) {
-    //         console.error("Error in TransferFrom test:", err);
-    //         alert("Failed to test TransferFrom. Please check the console for details.");
-    //     }
-    // };
-
     const submitPostProject = async (e: React.FormEvent) => {
         e.preventDefault();
 
@@ -302,7 +129,7 @@ export default function PostProject({ setPostProjectModalActive }: PostProjectPr
             // Get the connected wallet address
             const offlineSigner = window.keplr.getOfflineSigner(CHAIN_ID);
             const accounts = await offlineSigner.getAccounts();
-            const address = accounts[0].address;
+            const clientAddress = accounts[0].address;
 
             // Create a CosmWasm client
             const client = await SigningCosmWasmClient.connectWithSigner(
@@ -321,7 +148,7 @@ export default function PostProject({ setPostProjectModalActive }: PostProjectPr
             // Check wallet balance
             const balanceQuery = {
                 balance: {
-                    address: address,
+                    address: clientAddress,
                 },
             };
             const walletBalance = await client.queryContractSmart(tokenAddress, balanceQuery);
@@ -331,105 +158,26 @@ export default function PostProject({ setPostProjectModalActive }: PostProjectPr
                 return;
             }
 
-            // Check current allowance
-            const allowanceQuery = {
-                allowance: {
-                    owner: address,
-                    spender: CONTRACT_ADDRESS,
-                },
-            };
-            const currentAllowance = await client.queryContractSmart(tokenAddress, allowanceQuery);
-            console.log("Current allowance:", currentAllowance.allowance);
-
-            // Increase allowance if necessary
-            if (parseInt(currentAllowance.allowance) < parseInt(budgetInSmallestUnit)) {
-                const increaseAllowanceBeforeJobPostMsg = {
-                    increase_allowance: {
-                        spender: CONTRACT_ADDRESS,
-                        amount: budgetInSmallestUnit,
-                    },
-                };
-                const allowanceResult = await client.execute(
-                    address,
-                    tokenAddress,
-                    increaseAllowanceBeforeJobPostMsg,
-                    "auto"
-                );
-                console.log("Allowance increased successfully:", allowanceResult);
+            // Add job to Firestore
+            const jobData = {
+                clientAddress,
+                title: formData.title,
+                description: formData.description,
+                budget: budgetInSmallestUnit,
+                deadline: parseInt(formData.timeframe) * 86400,
+                deliverables: formData.skills,
+                status: "Open",
+                createdAt: new Date().toISOString(),
             }
 
-            // Check job contract's token balance (for debugging purposes)
-            const contractBalanceQuery = {
-                balance: {
-                    address: CONTRACT_ADDRESS,
-                },
-            };
-            const contractBalance = await client.queryContractSmart(tokenAddress, contractBalanceQuery);
-            console.log("Job contract's tATOM balance:", contractBalance.balance);
+            const docRef = await addDoc(collection(db, "jobs"), jobData)
 
-            // Prepare the PostJob message (must match the smart contract's expectations)
-            const postJobMsg = {
-                post_job: {
-                    title: formData.title,
-                    description: formData.description,
-                    budget: budgetInSmallestUnit, // Must be a string representing a Uint128
-                    deadline: parseInt(formData.timeframe) * 86400, // Convert days to seconds
-                    deliverables: formData.skills, // Array of strings
-                },
-            };
-            console.log("Post Job Message:", postJobMsg);
-
-            // // Simulate the transaction to estimate gas and catch errors early
-            // try {
-            //     const estimatedGas = await client.simulate(
-            //         address,
-            //         [
-            //             {
-            //                 typeUrl: "/cosmwasm.wasm.v1.MsgExecuteContract",
-            //                 value: {
-            //                     sender: address,
-            //                     contract: CONTRACT_ADDRESS,
-            //                     msg: Buffer.from(JSON.stringify(postJobMsg)),
-            //                     funds: [],
-            //                 },
-            //             },
-            //         ],
-            //         undefined // Memo (optional)
-            //     );
-            //     console.log("Simulation successful, estimated gas:", estimatedGas);
-            // } catch (simulationError) {
-            //     console.error("Simulation failed:", simulationError);
-            //     throw new Error("Transaction simulation failed. Please check the console for details.");
-            // }
-
-            // Execute the transaction
-            const result = await client.execute(
-                address,
-                CONTRACT_ADDRESS,
-                postJobMsg,
-                "auto"
-            );
-
-            console.log("Job posted successfully:", result);
+            console.log("Job posted successfully with ID:", docRef.id);
             alert("Job posted successfully!");
-            setPostProjectModalActive(false); // Close the modal
+            setPostProjectModalActive(false);
         } catch (err: any) {
             console.error("Error posting job:", err);
-            if (err.message.includes("Overflow")) {
-                alert("Failed to post job: There may be an issue with the smart contract's logic. Please contact the contract developer with the transaction details.");
-            } else if (err.message.includes("insufficient funds")) {
-                alert("Failed to post job: Insufficient funds in your wallet.");
-            } else if (err.message.includes("Insufficient allowance")) {
-                alert("Failed to post job: Insufficient allowance. Please try again to increase the allowance.");
-            } else if (err.message.includes("Insufficient token balance")) {
-                alert("Failed to post job: Insufficient tATOM balance in your wallet.");
-            } else if (err.message.includes("Profile does not exists")) {
-                alert("Failed to post job: You need to create a client profile before posting a job.");
-            } else if (err.message.includes("Only clients can post jobs")) {
-                alert("Failed to post job: Only client profiles can post jobs. Please update your profile type to 'Client'.");
-            } else {
-                alert("Failed to post job. Please check the console for details.");
-            }
+            alert("Failed to post job. Please check the console for details.");
         }
     };
 

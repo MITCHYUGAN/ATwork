@@ -29,7 +29,49 @@
         font-family: "Poppins", serif;
     }
 
-    .approveProjectheader{
+    .approveprojectheader {
+        margin-bottom: 20px;
+    }
+    
+    .approveprojectheader h1 {
+        font-size: 24px;
+        margin: 0;
+    }
+    
+    .approveprojectheader p {
+        font-size: 14px;
+        color: #666;
+    }
+    
+    .approveprojectcontent h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .approveprojectcontent p {
+        font-size: 14px;
+        margin: 5px 0;
+        color: #333;
+    }
+
+    .approveProjectbutton {
+        margin-top: 20px;
+    }
+    
+    .formbtn {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+    
+    .formbtn:hover {
+        background-color: #218838;
+    }
+
+    /* .approveProjectheader{
         margin-top: 20px;
     }
 
@@ -43,5 +85,5 @@
         display: flex;
         align-items: center;
         gap: 20px;
-    }
+    } */
 }
