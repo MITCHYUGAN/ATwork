@@ -1,6 +1,6 @@
 import aboutimg from "../../assets/aboutimg.svg"
 import styles from "../../styles/about.module.css"
-import Image from 'next/image';
+// import Image from 'next/image';
 
 export function About() {
     return (
@@ -11,7 +11,7 @@ export function About() {
                 <p className={styles.aboutcontentsp}><span className={styles.aboutcontentspspan}>Our Mission</span> is to empower businesses to achieve their goals by providing a seamless and efficient platform for connecting with top freelance talent.
                 Our Vision: To revolutionize the way businesses work with freelancers, making it easier, faster and more effective.</p>
             </div>
-            <Image className={styles.aboutimg} src={aboutimg} alt="" />
+            <img className={styles.aboutimg} src={aboutimg} alt="" />
         </section>
     )
 }

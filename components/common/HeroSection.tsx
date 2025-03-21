@@ -15,7 +15,7 @@ export function HeroSection() {
                 <Image className={`${styles.landingsvg} ${styles.landingsvgux}`} src={uxsvg} alt="" />
                 <p className={styles.herosectioncontentsp}>Connecting top talent with groundbreaking projects across Web2 and Web3. <span className={styles.herosectioncontentspspan}>Hire smarter. Work better. Stay in control.</span></p>
                 <Image className={`${styles.landingsvg} ${styles.landingsvgdev}`} src={devsvg} alt="" />
-                <Image className={styles.herosectioncontentsimg} src={landingpageusers} alt="" />
+                <img className={styles.herosectioncontentsimg} src={landingpageusers} alt="" />
             </div>
             <div className={styles.herosectionimgdiv}>
                 <Image className={`${styles.landingsvg} ${styles.landingsvgbrand}`} src={brandsvg} alt="" />
