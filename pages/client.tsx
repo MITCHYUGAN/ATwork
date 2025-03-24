@@ -4,7 +4,6 @@ import { useChain } from '@cosmos-kit/react';
 import { Button } from '@interchain-ui/react';
 import { CHAIN_ID, CHAIN_NAME, CONTRACT_ADDRESS, RPC_ENDPOINT } from '@/config';
 import checkmark from "../assets/checkmark.svg"
-import styles from "../styles/client.module.css"
 import notificationimg from "../assets/notificationing.svg"
 import postProjectImg from "../assets/postProjectImg.svg"
 import rocket from "../assets/rocket.svg"
@@ -16,6 +15,7 @@ import AcceptProposal from "@/components/actions/AcceptProposal";
 import { db } from "@/lib/firebase"; // Import Firebase
 import { collection, query, where, onSnapshot } from "firebase/firestore"; // Firestore methods
 import { truncateText } from "@/utils/truncate";
+import styles from "../styles/client.module.css"
 
 
 export default function Client() {
