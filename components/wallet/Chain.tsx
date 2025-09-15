@@ -35,7 +35,7 @@ export function Chain({ name, logo = DefaultChainLogo }: ChainProps) {
       >
         <Image alt={name} src={logo} width="38" height="38" style={{ borderRadius: '100%' }} />
       </Box>
-      <Text fontSize="$xl" fontWeight="$semibold">
+      <Text fontSize="$xl" fontWeight="$semibold" color={'$black'}>
         {name}
       </Text>
     </Stack>

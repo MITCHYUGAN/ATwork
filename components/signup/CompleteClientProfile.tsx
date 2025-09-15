@@ -1,8 +1,6 @@
 import styles from "../../styles/completeclientprofile.module.css"
 import { Button } from '@interchain-ui/react';
-import NextLink from 'next/link';
 import clientCover from "../../assets/cover.jpeg"
-
 import { SigningCosmWasmClient } from "@cosmjs/cosmwasm-stargate";
 import { GasPrice } from "@cosmjs/stargate";
 import { Window as KeplrWindow } from "@keplr-wallet/types";

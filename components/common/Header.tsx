@@ -20,8 +20,8 @@ export function Header(
           <img src={logo.src} alt="logo" />
         </NextLink>
         <ul className={styles.ul}>
-          <li>About</li>
-          <li>Services</li>
+          <li className={styles.li}>About</li>
+          <li className={styles.li}>Services</li>
         </ul>
         {
           !isConnectWallet ? (

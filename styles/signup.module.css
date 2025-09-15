@@ -9,6 +9,7 @@
         font-weight: 600;
         line-height: 65px;
         text-align: center;
+        color: black;
     }
 
     .selectProfile {
@@ -35,6 +36,7 @@
 
                 .profileh1{
                     font-weight: 600;
+                    color: black;
                 }
 
                 .profileContent {

@@ -19,6 +19,10 @@
             display: flex;
             list-style: none;
             gap: 20px;
+
+            .li{
+                color: black;
+            }
         }
     
         .headerBtn{
