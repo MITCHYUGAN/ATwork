@@ -135,17 +135,17 @@ export function CompleteFreelancerProfile({ setProfile }: CompleteFreelancerProf
                     <div className={styles.formnames}>
                         <label className={styles.formlabel} htmlFor="first_name">
                             <p className={styles.formlabeltext}>First Name <span className={styles.required}>*</span></p>
-                            <input className={styles.forminput} type="text" name="first_name" id="first_name" required/>
+                            <input className={styles.forminput} type="text" name="first_name" id="first_name" required placeholder='John'/>
                         </label>
                         <label className={styles.formlabel} htmlFor="last_name">
                             <p className={styles.formlabeltext}>Last Name <span className={styles.required}>*</span></p>
-                            <input className={styles.forminput} type="text" name="last_name" id="last_name" required/>
+                            <input className={styles.forminput} type="text" name="last_name" id="last_name" required placeholder='Doe'/>
                         </label>
                     </div>
                     <div>
                         <label className={styles.formlabel} htmlFor="bio">
                             <p className={styles.formlabeltext}>Bio <span className={styles.required}>*</span></p>
-                            <textarea className={`${styles.forminput} ${styles.formBio}`} name="bio" id="bio" required></textarea>
+                            <textarea className={`${styles.forminput} ${styles.formBio}`} name="bio" id="bio" placeholder='Looking for quality Gigs that matches my Skillset' required></textarea>
                         </label>
                     </div>
                     <div className={styles.formskills}>

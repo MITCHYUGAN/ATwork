@@ -121,13 +121,13 @@ export function CompleteClientProfile({ setProfile }: CompleteClientProfileProps
                             <p className={styles.formlabeltext}>
                                 First Name <span className={styles.required}>*</span>
                             </p>
-                            <input className={styles.forminput} type="text" name="first_name" id="first_name" required />
+                            <input className={styles.forminput} type="text" name="first_name" id="first_name" required placeholder="John"/>
                         </label>
                         <label className={styles.formlabel} htmlFor="last_name">
                             <p className={styles.formlabeltext}>
                                 Last Name <span className={styles.required}>*</span>
                             </p>
-                            <input className={styles.forminput} type="text" name="last_name" id="last_name" required />
+                            <input className={styles.forminput} type="text" name="last_name" id="last_name" required placeholder="Doe"/>
                         </label>
                     </div>
                     <div>
@@ -135,7 +135,7 @@ export function CompleteClientProfile({ setProfile }: CompleteClientProfileProps
                             <p className={styles.formlabeltext}>
                                 Bio<span className={styles.required}>*</span>
                             </p>
-                            <textarea className={`${styles.forminput} ${styles.formBio}`} name="bio" id="bio" required></textarea>
+                            <textarea className={`${styles.forminput} ${styles.formBio}`} name="bio" id="bio" placeholder='Looking for qualified Freelancers to work on my Projects' required></textarea>
                         </label>
                     </div>
                     <label htmlFor="social" className={`${styles.formsocial} ${styles.formlabel}`}>

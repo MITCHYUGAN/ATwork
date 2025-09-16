@@ -6,6 +6,7 @@
     font-weight: 600;
     display: block;
     margin-bottom: 4px;
+    color: black;
 }
 
 .required {
@@ -20,4 +21,5 @@
 
 .select {
     font-size: 16px;
+    color: black;
 }
